@@ -7,29 +7,27 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Detail</h1>
+	<h1>this is detail page</h1>
+	
 	<table border="1">
-			<thead>
+		<thead></thead>
+		<tbody>
 				<tr>
-					<th>BOOKNUM</th><th>BOOKNAME</th><th>BOOKRATE</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>${requestScope.detail.getBookNum()}</td>
-					<td>${requestScope.detail.bookName}</td>
-					<td>${detail.bookRate}</td>
-					<td>
+					<td>${detail.book_Num}</td>
+					<td>${detail.book_Name}</td>
 					
-					</td>
+					<td>${detail.book_Rate}</td>
+					<td>${detail.book_Sale}</td>
+					
 				</tr>
-			</tbody>
+		</tbody>
+	
+	
+	
 	</table>
-	<a href="../member/login.file">login</a>
-	<a href="/member/join.file">join</a>
-	<a href="./list.file">리스트보기</a>
-	<a href="./update.file?bookNum=${detail.bookNum}">수정</a>
-	<a href="./delete.file?bookNum=${detail.bookNum }">삭제</a>
-
+	
+	
+	<a href="./delete?book_Num=${detail.book_Num}"> Delete </a>
+	<a href="./update?book_Num=${detail.book_Num}"> Update </a>
 </body>
 </html>
