@@ -6,23 +6,23 @@
 		    
 		    <mapper namespace="com.im.start.bankbook.BankBookDAO">
 		    
-		    	<select id="getList" resultType="com.im.start.bankbook.BankBookDTO">
+		    	<select id="getList" resultType="BankBookDTO">
 		    	SELECT * FROM BANK_BOOK
 		    	</select>
 		    	
-		    	<select id="getDetail" parameterType="com.im.start.bankbook.BankBookDTO" resultType="com.im.start.bankbook.BankBookDTO">
+		    	<select id="getDetail" parameterType="BankBookDTO" resultType="BankBookDTO">
 		    	SELECT * FROM BANK_BOOK WHERE BOOK_NUM = #{book_Num}
 		    	</select>
 		    	
-		    	<insert id="setBankBook" parameterType="com.im.start.bankbook.BankBookDTO">
+		    	<insert id="setBankBook" parameterType="BankBookDTO">
 		    	INSERT INTO BANK_BOOK VALUES (#{book_Num},#{book_Name},#{book_Rate},#{book_Sale})
 		    	</insert>
 		    	
-		    	<update id="setUpdate" parameterType="com.im.start.bankbook.BankBookDTO">
+		    	<update id="setUpdate" parameterType="BankBookDTO">
     			UPDATE BANK_BOOK SET BOOK_NAME = #{book_Name} , BOOK_RATE = #{book_Rate} WHERE BOOK_NUM = #{book_Num}
     			</update>
     			
-    			<delete id="delete" parameterType="com.im.start.bankbook.BankBookDTO">
+    			<delete id="delete" parameterType="BankBookDTO">
     			DELETE BANK_BOOK WHERE BOOK_NUM = #{book_Num}</delete>
     			
     			
