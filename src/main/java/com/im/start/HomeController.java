@@ -41,7 +41,7 @@ public class HomeController {
 		System.out.println(sqlSession);
 		System.out.println("시작");
 		
-		return "home";
+		return "index";
 	}
 	
 }
