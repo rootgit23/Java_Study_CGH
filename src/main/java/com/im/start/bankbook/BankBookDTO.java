@@ -9,6 +9,7 @@ public class BankBookDTO {
 	private String Book_Name;
 	private double Book_Rate;
 	private boolean Book_Sale;
+	private String bookContents;
 	
 	
 	
@@ -35,6 +36,12 @@ public class BankBookDTO {
 	}
 	public void setBook_Sale(boolean book_Sale) {
 		Book_Sale = book_Sale;
+	}
+	public String getBookContents() {
+		return bookContents;
+	}
+	public void setBookContents(String bookContents) {
+		this.bookContents = bookContents;
 	}
 	
 	

@@ -2,6 +2,7 @@ package com.im.start.bankaccount;
 
 import java.util.List;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.im.start.BankMembers.BankMembersDTO;
+import com.im.start.bankbook.BankBookDTO;
 
 
 
@@ -40,13 +42,16 @@ public class AccountrController {
 	
 	
 	@RequestMapping(value = "add", method = RequestMethod.GET)
-	public String add(BankAccountDTO bankAccountDTO, HttpSession session) throws Exception {
+	public String add(BankAccountDTO bankAccountDTO, HttpSession session,BankBookDTO bankBookDTO) throws Exception {
 		System.out.println("BANKACCOUNT 실행");
 		
 		System.out.println(bankAccountDTO.getBookNum());
-		System.out.println(session.getAttribute("log"));
-		BankMembersDTO bankMembersDTO = (BankMembersDTO)session.getAttribute("log");
-		bankAccountDTO.setUserID(bankMembersDTO.getName());
+		System.out.println(session.getAttribute("member"));
+		System.out.println(bankBookDTO.getBook_Num());
+		BankMembersDTO bankMembersDTO = (BankMembersDTO)session.getAttribute("member");
+		bankAccountDTO.setUserID(bankMembersDTO.getUser_name());
+		bankAccountDTO.setBookNum(bankBookDTO.getBook_Num());
+		
 		
 		
 		int result = accountService.add(bankAccountDTO);

@@ -15,11 +15,11 @@
 		    	</select>
 		    	
 		    	<insert id="setBankBook" parameterType="BankBookDTO">
-		    	INSERT INTO BANK_BOOK VALUES (#{book_Num},#{book_Name},#{book_Rate},#{book_Sale})
+		    	INSERT INTO BANK_BOOK VALUES (#{book_Num},#{book_Name},#{book_Rate},#{book_Sale},#{bookContents})
 		    	</insert>
 		    	
 		    	<update id="setUpdate" parameterType="BankBookDTO">
-    			UPDATE BANK_BOOK SET BOOK_NAME = #{book_Name} , BOOK_RATE = #{book_Rate} WHERE BOOK_NUM = #{book_Num}
+    			UPDATE BANK_BOOK SET BOOK_NAME = #{book_Name} , BOOK_RATE = #{book_Rate} , BOOKCONTENTS = #{bookContents} WHERE BOOK_NUM = #{book_Num}
     			</update>
     			
     			<delete id="delete" parameterType="BankBookDTO">

@@ -48,13 +48,13 @@ public class BankMembersController {
 	
 	//Post
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String join(String USER_NAME,String PASSWORD,String NAME, String EMAIL, String PHONE) throws Exception {
+	public String join(String user_name,String password,String name, String email, String phone) throws Exception {
 		BankMembersDTO bankMembersDTO = new BankMembersDTO();
-		bankMembersDTO.setUser_name(USER_NAME);
-		bankMembersDTO.setPassword(PASSWORD);
-		bankMembersDTO.setName(NAME);
-		bankMembersDTO.setEmail(EMAIL);
-		bankMembersDTO.setPhone(PHONE);
+		bankMembersDTO.setUser_name(user_name);
+		bankMembersDTO.setPassword(password);
+		bankMembersDTO.setName(name);
+		bankMembersDTO.setEmail(email);
+		bankMembersDTO.setPhone(phone);
 		int result = bankMembersService.setJoin(bankMembersDTO);
 		if(result == 1) {
 			System.out.println("성공");

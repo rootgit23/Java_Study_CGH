@@ -17,7 +17,7 @@ public class BankAccountDAO {
 
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE = "com.iu.start.bankaccount.BankAccountDAO.";
+	private final String NAMESPACE = "com.im.start.bankaccount.BankAccountDAO.";
 	
 	public List<BankAccountDTO> getList(){
 		

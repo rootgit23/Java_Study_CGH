@@ -14,15 +14,14 @@
 		<div class="row">
 			<form action="login" method="post">
 				<div class="mb-3">
- 				 <label for="exampleFormControlInput1" class="form-label">Email address</label>
- 				 <input type="text" name="user_name" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+ 				 <label for="exampleFormControlInput1" class="form-label">ID</label>
+ 				 <input type="text" name="user_name" class="form-control" id="exampleFormControlInput1">
 				</div>
 				<div class="mb-3">
- 				 <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
- 				 <input type="text" name="password">
-  				 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+ 				 <label for="exampleFormControlTextarea1" class="form-label">Password</label>
+ 				 <input type="text" name="password" class="form-control" id="exampleFormControlInput1">
 				</div>
-				<input type="submit" value="로그인">
+				<button type="submit" class="btn btn-dark">로그인</button>
 			</form>
 		</div>
 	<c:import url="../template/footer.jsp"></c:import>

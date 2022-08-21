@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.im.start.bankaccount.BankAccountDAO">
+	<insert id="add" parameterType="BankAccountDTO">
+	INSERT INTO BOOK_ACCOUNT VALUES(ACCOUNT_SEQ.NEXTVAL, #{userID}, #{bookNum}, SYSDATE)
+	</insert>
+</mapper>
