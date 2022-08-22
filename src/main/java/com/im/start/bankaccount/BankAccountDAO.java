@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.im.start.BankMembers.BankMembersDTO;
+
 
 @Repository
 public class BankAccountDAO {
@@ -19,16 +21,15 @@ public class BankAccountDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.im.start.bankaccount.BankAccountDAO.";
 	
-	public List<BankAccountDTO> getList(){
-		
-		
-		return sqlSession.selectList(NAMESPACE+"getList");
-	}
 	
 	public int add(BankAccountDTO bankAccountDTO) throws Exception {
 		
 		
 		return sqlSession.insert(NAMESPACE+"add",bankAccountDTO);
+	}
+	
+	public List<BankAccountDTO> getList(BankMembersDTO bankMembersDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getList",bankMembersDTO);
 	}
 	
 	

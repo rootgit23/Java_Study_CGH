@@ -1,6 +1,7 @@
 package com.im.start.BankMembers;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.im.start.bankaccount.BankAccountDTO;
 
 @Controller
 @RequestMapping(value="/member/*")
@@ -37,6 +40,22 @@ public class BankMembersController {
 	public String logOut(HttpSession session) throws Exception{
 		session.invalidate();
 		return "redirect:../";
+	}
+	
+	@RequestMapping(value = "myPage", method = RequestMethod.GET)
+	public String getList(HttpSession session,Model model) throws Exception{
+		System.out.println("Member get List 실행");
+		BankMembersDTO bankMembersDTO = (BankMembersDTO)session.getAttribute("member");
+		//Map<String, Object> map = bankMembersService.getMyPage(bankMembersDTO);
+		//model.addAttribute("map", map);
+		bankMembersDTO = bankMembersService.getMyPage(bankMembersDTO);
+		model.addAttribute("dto", bankMembersDTO);
+		//List<BankAccountDTO> ar = AccountService.getList(bankMembersDTO);
+		//model.addAttribute("dto", bankMembersDTO);
+		//model.addAttribute("list", ar);
+		
+		return "/member/myPage";
+		
 	}
 	
 	//Get

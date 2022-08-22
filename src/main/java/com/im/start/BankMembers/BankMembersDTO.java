@@ -1,5 +1,9 @@
 package com.im.start.BankMembers;
 
+import java.util.List;
+
+import com.im.start.bankaccount.BankAccountDTO;
+
 public class BankMembersDTO {
 	
 	private String user_name;
@@ -7,6 +11,14 @@ public class BankMembersDTO {
 	private String name;
 	private String email;
 	private String phone;
+	private List<BankAccountDTO> bankAccountDTO;
+	public List<BankAccountDTO> getBankAccountDTO() {
+		return bankAccountDTO;
+	}
+	public void setBankAccountDTO(List<BankAccountDTO> bankAccountDTO) {
+		this.bankAccountDTO = bankAccountDTO;
+	}
+	
 	public String getUser_name() {
 		return user_name;
 	}

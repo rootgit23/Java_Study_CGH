@@ -1,6 +1,10 @@
 package com.im.start.bankbook;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
+
+import com.im.start.bankaccount.BankAccountDTO;
 
 @Component
 public class BankBookDTO {
@@ -10,9 +14,16 @@ public class BankBookDTO {
 	private double Book_Rate;
 	private boolean Book_Sale;
 	private String bookContents;
+	private List<BankAccountDTO> bankAccountDTO;
 	
 	
 	
+	public List<BankAccountDTO> getBankAccountDTO() {
+		return bankAccountDTO;
+	}
+	public void setBankAccountDTO(List<BankAccountDTO> bankAccountDTO) {
+		this.bankAccountDTO = bankAccountDTO;
+	}
 	public long getBook_Num() {
 		return Book_Num;
 	}

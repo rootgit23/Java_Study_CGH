@@ -13,4 +13,28 @@
 	<select id="setJoin" parameterType="BankMembersDTO">
 		INSERT INTO BANK_MEMBERS VALUES(#{user_name},#{password},#{name},#{email},#{phone})
 	</select>
+	<select id="getMyPage" parameterType="BankMembersDTO" resultMap="getMyPageResult">
+		SELECT BM.USER_NAME,BM.NAME,BM.EMAIL,BM.PHONE,BA.ACCOUNT_NUM,BB.BOOK_NAME,BA.ACCOUNT_DATE
+		    FROM BANK_MEMBERS BM
+		        INNER JOIN
+		        BOOK_ACCOUNT BA
+		        ON BM.USER_NAME = BA.USER_NAME
+		        INNER JOIN
+		        BANK_BOOK BB
+		        ON BA.BOOK_NUM = BB.BOOK_NUM
+		    WHERE BM.USER_NAME = #{user_name}
+	</select>
+	<resultMap type="BankMembersDTO" id="getMyPageResult">
+		<id column="USER_NAME" property="user_name" />
+		<result column="NAME" property="name" />
+		<result column="EMAIL" property="email"/>
+		<result column="PHONE" property="phone"/>
+		<collection property="bankAccountDTO" javaType="List" ofType="BankAccountDTO">
+			<id column="ACCOUNT_NUM" property="accountNum"/>
+			<result column="ACCOUNT_DATE" property="accountDate"/>
+			<association property="bankBookDTO" javaType="BankBookDTO">
+				<result column="BOOK_NAME" property="book_Name"/>
+			</association>
+		</collection>
+	</resultMap>
 </mapper>

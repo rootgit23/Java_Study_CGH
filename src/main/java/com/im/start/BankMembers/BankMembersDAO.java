@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.im.start.BankMembers.BankMembersDTO;
+import com.im.start.bankaccount.BankAccountDTO;
 
 @Repository
 public class BankMembersDAO {
@@ -28,6 +29,10 @@ public class BankMembersDAO {
 
 	public List<BankMembersDTO> getSearchByID(String search) throws Exception {
 			return sqlSession.selectList(NAMESPACE+"getSearchByID",search);
+	}
+	
+	public BankMembersDTO getMyPage(BankMembersDTO bankMembersDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getMyPage",bankMembersDTO);
 	}
 
 }
