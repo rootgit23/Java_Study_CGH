@@ -9,7 +9,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body>
-	<h1>Notice Detail Page</h1>
+	<h1>QNA Detail Page</h1>
 	<table class="table table-success table-striped">
 		<thead>
 			<tr>
@@ -19,6 +19,9 @@
 				<th>Writer</th>
 				<th>RegDate</th>
 				<th>HIT</th>
+				<th>REF</th>
+				<th>STEP</th>
+				<th>DEPTH</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,6 +32,9 @@
 					<td>${boardDTO.writer}</td>
 					<td>${boardDTO.regDate}</td>
 					<td>${boardDTO.hit }</td>
+					<td>${boardDTO.ref }</td>
+					<td>${boardDTO.step }</td>
+					<td>${boardDTO.depth }</td>
 					
 				</tr>
 		</tbody>

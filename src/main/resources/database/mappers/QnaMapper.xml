@@ -11,7 +11,7 @@
 		    		SELECT * FROM QNA WHERE NUM = #{num}
 		    	</select>
 		    	<insert id="setAdd" parameterType="BoardDTO">
-		    		INSERT INTO QNA VALUES(2,#{title},#{contents},#{writer},SYSDATE,0,0,0,0)
+		    		INSERT INTO QNA VALUES(BOARD_SEQ.NEXTVAL,#{title},#{contents},#{writer},SYSDATE,0,0,0,0)
 		    	</insert>
 		    	<update id="setUpdate" parameterType="BoardDTO">
 		    		UPDATE QNA SET TITLE = #{title}, CONTENTS = #{contents} WHERE NUM = #{num}

@@ -2,6 +2,8 @@ package com.im.start.board.notice;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,6 +64,7 @@ public class NoticeController {
 		return "redirect:./detail?num="+boardDTO.getNum();
 	}
 	
+	@RequestMapping(value = "delete",method = RequestMethod.GET)
 	public String setDelete(BoardDTO boardDTO) throws Exception{
 		int result = noticeService.setDelete(boardDTO);
 		return "redirect:./list";

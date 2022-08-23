@@ -14,7 +14,7 @@
 		  	  </select>
 		  	  
 		  	  <insert id="setAdd" parameterType="BoardDTO">
-		  	  INSERT INTO NOTICE VALUES(BOARD_SEQ,#{title},#{contents},#{writer},sysdate,0)
+		  	  INSERT INTO NOTICE VALUES(BOARD_SEQ.NEXTVAL,#{title},#{contents},#{writer},sysdate,0)
 		  	  </insert>
 		  	  
 		  	  <update id="setUpdate" parameterType="BoardDTO">

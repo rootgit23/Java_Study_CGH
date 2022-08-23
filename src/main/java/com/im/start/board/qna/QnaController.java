@@ -65,6 +65,7 @@ public class QnaController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "delete",method = RequestMethod.GET)
 	public ModelAndView setDelete(BoardDTO boardDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int result = qnaService.setDelete(boardDTO);
