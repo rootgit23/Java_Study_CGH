@@ -1,6 +1,8 @@
 package com.im.start.board.notice;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +17,17 @@ public class NoticeService implements BoardService {
 	private NoticeDAO noticeDAO;
 	
 	@Override
-	public List<BoardDTO> getList() throws Exception {
-		return noticeDAO.getList();
+	public List<BoardDTO> getList(Long page) throws Exception {
+		System.out.println("Service page : " + page);
+		Long perPage = 10L;
+		Long startRow = (page-1) * perPage+1;
+		Long lastRow = page * perPage;
+		Map<String, Long> map = new HashMap<String, Long>();
+		map.put("startRow", startRow);
+		map.put("lastRow", lastRow);
+		System.out.println("StartRow : " + startRow);
+		System.out.println("LastRow : " + lastRow);
+		return noticeDAO.getList(map);
 	}
 
 	@Override
@@ -26,7 +37,7 @@ public class NoticeService implements BoardService {
 
 	@Override
 	public int setAdd(BoardDTO boardDTO) throws Exception {
-		return noticeDAO.setUpdate(boardDTO);
+		return noticeDAO.setAdd(boardDTO);
 	}
 
 	@Override
