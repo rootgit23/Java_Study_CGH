@@ -44,6 +44,17 @@
 		<c:if test="${ not empty member }">
 			<a href="./add"> Add </a>
 		</c:if>
+		<nav aria-label="Page navigation example">
+  			<ul class="pagination">
+   			 <li class="page-item">
+      			<a class="page-link" href="#" aria-label="Previous">
+       			 <span aria-hidden="true">&laquo;</span>
+    		    </a>
+    		</li>
+    		<c:forEach begin="${pager.startNum }" end="${pager.lastNum }" var="i">
+    			<li class="page-item"><a class="page-link" href="./list?page=${i }">${i}</a></li>
+    		</c:forEach>
+		</nav>
 		<c:import url="../template/footer.jsp"></c:import>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
