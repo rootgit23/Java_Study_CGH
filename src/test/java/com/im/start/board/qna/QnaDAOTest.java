@@ -15,6 +15,21 @@ public class QnaDAOTest extends MyAbstractTest {
 	@Autowired
 	private QnaDAO qnaDAO;
 	
+	@Test
+		public void setAddTest() throws Exception{
+			for(int i=0; i<100; i++) {
+				QnaDTO noticeDTO = new QnaDTO();
+				noticeDTO.setTitle("title"+i);
+				noticeDTO.setContents("contents"+i);
+				noticeDTO.setWriter("writer"+i);
+				int result = qnaDAO.setAdd(noticeDTO);
+				if(i%10 == 0) {
+					Thread.sleep(500);
+				}
+			}
+			System.out.println("Finish!!!!");
+		}
+	
 	//@Test
 	//public void getList() throws Exception{
 		 //List<BoardDTO> ar = qnaDAO.getList();
@@ -48,7 +63,7 @@ public class QnaDAOTest extends MyAbstractTest {
 		  //int result = qnaDAO.setUpdate(boardDTO);
 		  //assertEquals(1, result);
 	  //}
-	  @Test
+	  //@Test
 	  public void setDelete() throws Exception{
 		  BoardDTO boardDTO = new BoardDTO();
 		  boardDTO.setNum(2L);

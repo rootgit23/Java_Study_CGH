@@ -2,10 +2,12 @@ package com.im.start.board.impl;
 
 import java.util.List;
 
+import com.im.start.util.Pager;
+
 public interface BoardService {
 	
 	//글목록
-	public List<BoardDTO> getList(Long page) throws Exception;
+	public List<BoardDTO> getList(Pager page) throws Exception;
 	
 	//글상세보기
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception;
