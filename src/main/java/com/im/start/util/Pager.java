@@ -9,7 +9,10 @@ public class Pager {
 	private Long page;
 	private Long perPage;
 	private Long perBlock;
+	private boolean pre;
+	private boolean next;
 	
+
 	public Pager() {
 		this.perPage = 10L;
 		this.perBlock = 5L;
@@ -25,6 +28,9 @@ public class Pager {
 		if(totalCount % this.getPerPage() != 0) {
 			totalPage++;
 		}
+		if(this.getPage()>totalPage) {
+			this.setPage(totalPage);
+		}
 		Long totalBlock = totalPage/this.getPerBlock();
 		if(totalPage % this.getPerBlock() != 0) {
 			totalBlock++;
@@ -35,6 +41,19 @@ public class Pager {
 		}
 		this.startNum = (curBlock - 1) * this.getPerBlock() + 1;
 		this.lastNum = curBlock*this.getPerBlock();
+		
+		if(curBlock == totalBlock) {
+			this.lastNum = totalPage;
+		}
+		
+		if(curBlock > 1) {
+			pre = true;
+		}
+		
+		if(curBlock < totalBlock) {
+			next = true;
+		}
+		
 	}
 	
 	public Long getPerPage() {
@@ -86,7 +105,7 @@ public class Pager {
 		this.lastRow = lastRow;
 	}
 	public Long getPage() {
-		if(this.page == null) {
+		if(this.page == null || this.page < 1) {
 			this.page = 1L;
 		}
 		return page;
@@ -95,5 +114,20 @@ public class Pager {
 		this.page = page;
 	}
 	
+	public boolean isPre() {
+		return pre;
+	}
+	
+	public void setPre(boolean pre) {
+		this.pre = pre;
+	}
+	
+	public boolean isNext() {
+		return next;
+	}
+	
+	public void setNext(boolean next) {
+		this.next = next;
+	}
 
 }
