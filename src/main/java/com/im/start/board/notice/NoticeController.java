@@ -33,6 +33,8 @@ public class NoticeController {
 		ModelAndView mv = new ModelAndView();
 		System.out.println(pager.getPage());
 	    //System.out.println(page);
+		System.out.println(pager.getKind());
+		System.out.println(pager.getSearch());
 		List<BoardDTO> ar = noticeService.getList(pager);
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);

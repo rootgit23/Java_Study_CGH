@@ -11,7 +11,27 @@ public class Pager {
 	private Long perBlock;
 	private boolean pre;
 	private boolean next;
-	
+	private String kind;
+	private String search;
+
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public String getSearch() {
+		if(this.search == null) {
+			this.search = "";
+		}
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
 
 	public Pager() {
 		this.perPage = 10L;

@@ -23,7 +23,7 @@
 		</div>
 		<div class="mb-3">
  				 <label for="exampleFormControlInput1" class="form-label">Writer</label>
- 				 <input type="text" name="writer" readonly="readonly" value=${member.name } class="form-control" id="exampleFormControlInput1">
+ 				 <input type="text" name="writer" class="form-control" id="exampleFormControlInput1">
 		</div>
 		<button type="submit" class="btn btn-dark">추가</button>
 	

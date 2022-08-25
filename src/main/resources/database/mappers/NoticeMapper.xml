@@ -4,11 +4,21 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 		    <mapper namespace="com.im.start.board.notice.NoticeDAO">
+		    	<sql id="search">
+		    		 WHERE
+			  			<choose>
+			  				<when test="kind == 'title'">TITLE</when>
+			  				<when test="kind == 'writer'">WRITER</when>
+			  				<otherwise>CONTENTS</otherwise>
+			  			</choose>
+			  		LIKE '%'||#{search}||'%'
+		    	</sql>
 		    
 		   	  <select id="getList" parameterType="Pager" resultType="NoticeDTO">
 		  	  SELECT * FROM
 			  (SELECT ROWNUM R, N.* FROM
-			  (SELECT * FROM NOTICE ORDER BY NUM DESC) N)
+			  (SELECT * FROM NOTICE <include refid="search"></include>
+			  						ORDER BY NUM DESC) N)
 			  WHERE R BETWEEN #{startRow} AND #{lastRow}
 		  	  </select>
 		  	  
@@ -28,8 +38,9 @@
 		  	  DELETE NOTICE WHERE NUM=#{num}
 		  	  </delete>
 		  	  
-		  	  <select id="getCount" resultType="Long">
+		  	  <select id="getCount" resultType="Long" parameterType="Pager">
 		  	  SELECT COUNT(*) FROM NOTICE
+			  							<include refid="search"></include>
 		  	  </select>
 		    	
 		    </mapper>

@@ -34,10 +34,10 @@ public class NoticeDAOTest extends MyAbstractTest {
 		//}
 		//System.out.println("Finish!!!!");
 	//}
-	@Test
-	public void getCountTest() throws Exception{
-		Long result = noticeDAO.getCount();
-		System.out.println(result);
-	}
+	//@Test
+	//public void getCountTest() throws Exception{
+		//Long result = noticeDAO.getCount();
+		//System.out.println(result);
+	//}
 
 }

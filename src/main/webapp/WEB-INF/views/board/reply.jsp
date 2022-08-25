@@ -10,40 +10,26 @@
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
-	<h1>${board} Detail Page</h1>
-	<table class="table table-success table-striped">
-		<thead>
-			<tr>
-				<th>Num</th>
-				<th>Title</th>
-				<th>Contents</th>
-				<th>Writer</th>
-				<th>RegDate</th>
-				<th>HIT</th>
-			</tr>
-		</thead>
-		<tbody>
-				<tr>
-					<td>${boardDTO.num}</td>
-					<td>${boardDTO.title}</td>
-					<td>${boardDTO.contents }</td>
-					<td>${boardDTO.writer}</td>
-					<td>${boardDTO.regDate}</td>
-					<td>${boardDTO.hit }</td>
-					
-				</tr>
-		</tbody>
+	<h1>${board} Reply Page</h1>
+	
+	<form action="./reply" method="post">
+		<input type="hidden" name="num" value="${boardDTO.num }">
+		<div class="mb-3">
+ 				 <label for="exampleFormControlInput1" class="form-label">Title</label>
+ 				 <input type="text" name="title" class="form-control" id="exampleFormControlInput1">
+		</div>
+		<div class="mb-3">
+ 				 <label for="exampleFormControlInput1" class="form-label">Contents</label>
+ 				 <input type="text" name="contents" class="form-control" id="exampleFormControlInput1">
+		</div>
+		<div class="mb-3">
+ 				 <label for="exampleFormControlInput1" class="form-label">Writer</label>
+ 				 <input type="text" name="writer" class="form-control" id="exampleFormControlInput1">
+		</div>
+		<button type="submit" class="btn btn-dark">추가</button>
 	
 	
-	
-	</table>
-	<div class="row">
-		<a href="./reply?num=${boardDTO.num }" class="btn btn-danger">Reply</a>
-	</div>
-	<c:if test="${member.name == boardDTO.writer }">
-		<a href="./delete?num=${boardDTO.num}"> Delete </a>
-		<a href="./update?num=${boardDTO.num}"> Update </a>
-	</c:if>
+	</form>
 	<c:import url="../template/footer.jsp"></c:import>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
