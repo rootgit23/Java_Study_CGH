@@ -3,6 +3,7 @@ package com.im.start.BankMembers;
 import java.util.List;
 
 import com.im.start.bankaccount.BankAccountDTO;
+import com.im.start.file.FileDTO;
 
 public class BankMembersDTO {
 	
@@ -11,6 +12,13 @@ public class BankMembersDTO {
 	private String name;
 	private String email;
 	private String phone;
+	private MemberFileDTO memberFileDTO;
+	public MemberFileDTO getMemberFileDTO() {
+		return memberFileDTO;
+	}
+	public void setMemberFileDTO(MemberFileDTO memberFileDTO) {
+		this.memberFileDTO = memberFileDTO;
+	}
 	private List<BankAccountDTO> bankAccountDTO;
 	public List<BankAccountDTO> getBankAccountDTO() {
 		return bankAccountDTO;

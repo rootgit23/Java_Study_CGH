@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.im.start.bankaccount.BankAccountDTO;
 
@@ -67,16 +68,19 @@ public class BankMembersController {
 	
 	//Post
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String join(String user_name,String password,String name, String email, String phone) throws Exception {
+	public String join(String user_name,String password,String name, String email, String phone, MultipartFile photo) throws Exception {
 		BankMembersDTO bankMembersDTO = new BankMembersDTO();
 		bankMembersDTO.setUser_name(user_name);
 		bankMembersDTO.setPassword(password);
 		bankMembersDTO.setName(name);
 		bankMembersDTO.setEmail(email);
 		bankMembersDTO.setPhone(phone);
-		int result = bankMembersService.setJoin(bankMembersDTO);
+		System.out.println("업로드시 파일명 :" + photo.getOriginalFilename());
+		System.out.println("업로드시 파라미터명 :" + photo.getName());
+		System.out.println("업로드하는 파일 크기 : " + photo.getSize());
+		int result = bankMembersService.setJoin(bankMembersDTO,photo);
 		if(result == 1) {
-			System.out.println("성공");
+			//System.out.println("성공");
 		}
 		else {
 			System.out.println("실패");

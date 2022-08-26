@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.im.start.board.impl.BoardDAO;
 import com.im.start.board.impl.BoardDTO;
+import com.im.start.board.impl.BoardFileDTO;
 import com.im.start.util.Pager;
 
 @Repository
@@ -31,6 +32,10 @@ public class NoticeDAO implements BoardDAO {
 	@Override
 	public int setAdd(BoardDTO boardDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"setAdd",boardDTO);
+	}
+	@Override
+	public int setAddFile(List<BoardFileDTO> ar) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setAddFile", ar);
 	}
 	
 	@Override

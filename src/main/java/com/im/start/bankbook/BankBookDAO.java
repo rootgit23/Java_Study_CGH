@@ -21,6 +21,10 @@ public class BankBookDAO {
 		return sqlSession.insert(NAMESPACE+"setBankBook",bankBookDTO);
 	}
 	
+	public int setAddFile(BankBookFileDTO bankBookFileDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setAddFile", bankBookFileDTO);
+	}
+	
 	// bank book 조회 최신 순 
 	public List<BankBookDTO> getList() throws Exception{
 		

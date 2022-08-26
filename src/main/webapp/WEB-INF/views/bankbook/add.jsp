@@ -12,7 +12,7 @@
 	<c:import url="../template/header.jsp"></c:import>
 	<h1>this is add page</h1>
 	
-	<form action="./add" method="post">
+	<form action="./add" method="post" enctype="multipart/form-data">
 		<div class="mb-3">
  				 <label for="exampleFormControlInput1" class="form-label">Name</label>
  				 <input type="text" name="book_Name" class="form-control" id="exampleFormControlInput1">
@@ -24,6 +24,10 @@
 		<div class="mb-3">
  				 <label for="exampleFormControlInput1" class="form-label">Contents</label>
  				 <input type="text" name="bookContents" class="form-control" id="exampleFormControlInput1">
+		</div>
+		<div class="mb-3">
+ 				 <label for="exampleFormControlTextarea1" class="form-label">Photo</label>
+ 				 <input type="file" name="photo" class="form-control" id="exampleFormControlInput1">
 		</div>
 		<button type="submit" class="btn btn-dark">추가</button>
 	

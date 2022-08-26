@@ -17,6 +17,9 @@
 		    	<insert id="setBankBook" parameterType="BankBookDTO">
 		    	INSERT INTO BANK_BOOK VALUES (#{book_Num},#{book_Name},#{book_Rate},#{book_Sale},#{bookContents})
 		    	</insert>
+		    	<insert id="setAddFile" parameterType="BankBookFileDTO">
+		    	INSERT INTO BANKBOOKFILE VALUES (FILE_SEQ.NEXTVAL,#{fileName},#{oriName},#{book_Num})
+		    	</insert>
 		    	
 		    	<update id="setUpdate" parameterType="BankBookDTO">
     			UPDATE BANK_BOOK SET BOOK_NAME = #{book_Name} , BOOK_RATE = #{book_Rate} , BOOKCONTENTS = #{bookContents} WHERE BOOK_NUM = #{book_Num}

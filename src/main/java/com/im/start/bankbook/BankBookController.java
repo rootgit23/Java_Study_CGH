@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping(value = "/bankbook/*")
@@ -43,13 +44,14 @@ public class BankBookController {
 	}
 	
 	@RequestMapping(value = "add",method = RequestMethod.POST)
-	public String Add(BankBookDTO bankBookDTO) throws Exception {
+	public String Add(BankBookDTO bankBookDTO,MultipartFile photo) throws Exception {
 		System.out.println("add post 실행");
-		bankBookDTO.setBook_Sale(false);
 		bankBookDTO.setBook_Num(System.currentTimeMillis());
+		bankBookDTO.setBook_Sale(false);
+		System.out.println(bankBookDTO.getBook_Num());
 		
 		
-		bankBookService.setBankBook(bankBookDTO);
+		bankBookService.setBankBook(bankBookDTO,photo);
 		
 		return "redirect:./list";
 	}

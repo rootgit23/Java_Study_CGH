@@ -1,13 +1,25 @@
 package com.im.start.board.notice;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.im.start.board.impl.BoardDTO;
+import com.im.start.board.impl.BoardFileDTO;
 import com.im.start.board.impl.BoardService;
 import com.im.start.util.Pager;
 
@@ -16,6 +28,8 @@ public class NoticeService implements BoardService {
 	
 	@Autowired
 	private NoticeDAO noticeDAO;
+	@Autowired
+	private ServletContext servletContext;
 	
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
@@ -67,8 +81,31 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO) throws Exception {
-		return noticeDAO.setAdd(boardDTO);
+	public int setAdd(BoardDTO boardDTO,MultipartFile [] files) throws Exception {
+		int result = noticeDAO.setAdd(boardDTO);
+		System.out.println(boardDTO.getNum());
+		String realPath = servletContext.getRealPath("resources/upload/notice");
+		System.out.println(realPath);
+		List<BoardFileDTO> ar = new ArrayList<BoardFileDTO>();
+		for(int i=0; i<files.length; i++) {
+			File file = new File(realPath);
+			if(!files[i].isEmpty()) {
+				if(file.exists()) {
+					file.mkdirs();
+				}
+				String fileName = UUID.randomUUID().toString();
+				fileName = fileName+"_"+files[i].getOriginalFilename();
+				file = new File(file, fileName);
+				files[i].transferTo(file);
+				BoardFileDTO boardFileDTO = new BoardFileDTO();
+				boardFileDTO.setNum(boardDTO.getNum());
+				boardFileDTO.setFileName(fileName);
+				boardFileDTO.setOriName(files[i].getOriginalFilename());
+				ar.add(boardFileDTO);
+			}
+		}
+		noticeDAO.setAddFile(ar);
+		return result;
 	}
 
 	@Override

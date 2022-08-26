@@ -14,12 +14,15 @@
 		INSERT INTO BANK_MEMBERS VALUES(#{user_name},#{password},#{name},#{email},#{phone})
 	</select>
 	<select id="getMyPage" parameterType="BankMembersDTO" resultMap="getMyPageResult">
-		SELECT BM.USER_NAME,BM.NAME,BM.EMAIL,BM.PHONE,BA.ACCOUNT_NUM,BB.BOOK_NAME,BA.ACCOUNT_DATE
+		SELECT BM.USER_NAME,BM.NAME,BM.EMAIL,BM.PHONE,MF.FILENUM,MF.FILENAME,BA.ACCOUNT_NUM,BB.BOOK_NAME,BA.ACCOUNT_DATE
 		    FROM BANK_MEMBERS BM
-		        INNER JOIN
+		    	LEFT OUTER JOIN
+		    	MEMBERFILE MF
+		    	ON BM.USER_NAME = MF.USER_NAME
+		        LEFT OUTER JOIN
 		        BOOK_ACCOUNT BA
 		        ON BM.USER_NAME = BA.USER_NAME
-		        INNER JOIN
+		        LEFT OUTER JOIN
 		        BANK_BOOK BB
 		        ON BA.BOOK_NUM = BB.BOOK_NUM
 		    WHERE BM.USER_NAME = #{user_name}
@@ -29,6 +32,10 @@
 		<result column="NAME" property="name" />
 		<result column="EMAIL" property="email"/>
 		<result column="PHONE" property="phone"/>
+		<association property="memberFileDTO" javaType="MemberFileDTO">
+			<id column="FILENUM" property="fileNum"/>
+			<result column="FILENAME" property="fileName"/>
+		</association>
 		<collection property="bankAccountDTO" javaType="List" ofType="BankAccountDTO">
 			<id column="ACCOUNT_NUM" property="accountNum"/>
 			<result column="ACCOUNT_DATE" property="accountDate"/>
@@ -37,4 +44,7 @@
 			</association>
 		</collection>
 	</resultMap>
+	<insert id="setAddFile" parameterType="MemberFileDTO">
+		INSERT INTO MEMBERFILE VALUES(FILE_SEQ.NEXTVAL,#{fileName},#{oriName},#{user_name})
+	</insert>
 </mapper>

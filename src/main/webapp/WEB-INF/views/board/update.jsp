@@ -24,7 +24,7 @@
 		</div>
 		<div class="mb-3">
  				 <label for="exampleFormControlInput1" class="form-label">Contents</label>
- 				 <input type="text" name="contents" value="${boardDTO.contents }" class="form-control" id="exampleFormControlInput1">
+ 				 <textarea class="form-control" name="contents" value="${boardDTO.contents }" class="form-control" id="exampleFormControlInput1"></textarea>
 		</div>
 	
 		

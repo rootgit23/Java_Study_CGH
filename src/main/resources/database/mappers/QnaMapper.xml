@@ -38,6 +38,15 @@
 		    		</selectKey>
 		    		INSERT INTO QNA VALUES(#{num},#{title},#{contents},#{writer},SYSDATE,0,#{num},0,0)
 		    	</insert>
+		    	<insert id="setAddFile" parameterType="List">
+		    	INSERT INTO QNAFILE (FILENUM,FILENAME,ORINAME,NUM)
+		    	SELECT FILE_SEQ.NEXTVAL,A.*
+		    	FROM (
+		    	<foreach collection="list" item="item" separator="UNION ALL">
+		    		SELECT #{item.fileName},#{item.oriName},#{item.num} FROM DUAL
+		    	</foreach>
+		    	)A
+		    	</insert>
 		    	<update id="setUpdate" parameterType="BoardDTO">
 		    		UPDATE QNA SET TITLE = #{title}, CONTENTS = #{contents} WHERE NUM = #{num}
 		    	</update>

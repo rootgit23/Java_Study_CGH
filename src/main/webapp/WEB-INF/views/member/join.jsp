@@ -11,7 +11,7 @@
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 	<h1>Join Page</h1>
-	<form action="join" method="post">
+	<form action="join" method="post" enctype="multipart/form-data">
 		<div class="mb-3">
  				 <label for="exampleFormControlInput1" class="form-label">ID</label>
  				 <input type="text" name="user_name" class="form-control" id="exampleFormControlInput1">
@@ -31,6 +31,10 @@
 		<div class="mb-3">
  				 <label for="exampleFormControlTextarea1" class="form-label">Phone</label>
  				 <input type="tel" name="phone" class="form-control" id="exampleFormControlInput1">
+		</div>
+		<div class="mb-3">
+ 				 <label for="exampleFormControlTextarea1" class="form-label">Photo</label>
+ 				 <input type="file" name="photo" class="form-control" id="exampleFormControlInput1">
 		</div>
 		<button type="submit" class="btn btn-dark">가입하기</button>
 	
