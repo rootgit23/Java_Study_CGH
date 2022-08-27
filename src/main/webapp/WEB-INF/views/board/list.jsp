@@ -15,6 +15,7 @@
 			<thead>
 				<tr>
 					<th>Num</th>
+					<th>ReplyCount</th>
 					<th>Title</th>
 					<th>Writer</th>
 					<th>RegDate</th>
@@ -28,10 +29,10 @@
 				<c:forEach items="${list}" var="ar" >
 				<tr>
 					<td>${ar.num }</td>
-					<td>
 					<c:catch>
-						<c:forEach begin="1" end="${ar.depth }">&nbsp;</c:forEach>
+					<td><a href="./replydetail?ref=${ar.ref}">${ar.c }</a></td>
 					</c:catch>
+					<td>
 					<a href="./detail?num=${ar.num}">${ar.title }</a>
 					</td>
 					<td>${ar.writer}</td>

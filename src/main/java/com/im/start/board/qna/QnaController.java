@@ -53,6 +53,15 @@ public class QnaController {
 		return mv;
 	}
 	
+	@RequestMapping(value="replydetail",method = RequestMethod.GET)
+	public ModelAndView getReplyDetail(QnaDTO qnaDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<QnaDTO> ar = qnaService.getReplyDetail(qnaDTO);
+		mv.addObject("list", ar);
+		mv.setViewName("board/replydetail");
+		return mv;
+	}
+	
 	@RequestMapping(value="detail",method = RequestMethod.GET)
 	public ModelAndView getDetail(BoardDTO boardDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();

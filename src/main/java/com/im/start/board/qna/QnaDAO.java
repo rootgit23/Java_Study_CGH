@@ -18,6 +18,10 @@ public class QnaDAO implements BoardDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.im.start.board.qna.QnaDAO.";
 	
+	public List<QnaDTO> getReplyDetail(QnaDTO qnaDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getReplyDetail", qnaDTO);
+	}
+	
 	public int setStepUpdate(QnaDTO qnaDTO) throws Exception{
 		return sqlSession.update(NAMESPACE+"setStepUpdate", qnaDTO);
 	}

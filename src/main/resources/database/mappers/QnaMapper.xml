@@ -20,14 +20,33 @@
 		      			<when test="kind == 'title'">WRITER</when>
 		      			<otherwise>CONTENTS</otherwise>
 		      		</choose>
-		      	LIKE '%'||#{search}||'%'
+		      	LIKE '%'||#{search}||'%' AND STEP = 0
+		      </sql>
+		      <sql id="search2">
+		      	WHERE
+		      		<choose>
+		      			<when test="kind == 'title'">TITLE</when>
+		      			<when test="kind == 'title'">WRITER</when>
+		      			<otherwise>CONTENTS</otherwise>
+		      		</choose>
+		      	LIKE '%'||#{search}||'%' AND STEP > 0 AND REF = #{ref}
 		      </sql>
 		        <select id="getList" parameterType="Pager" resultType="QnaDTO">
-		    		SELECT * FROM
+		    		SELECT A.*,B.C FROM
 		    	    (SELECT ROWNUM R, N.* FROM
 		    		(SELECT * FROM QNA <include refid="search"></include>
-		    						   ORDER BY REF DESC, STEP ASC) N)
+		    						   ORDER BY REF DESC, STEP ASC) N ) A
+		    		INNER JOIN
+		    		(SELECT REF,COUNT(REF)-1 AS C FROM QNA GROUP BY REF) B
+	    		    ON A.REF=B.REF
+		    	    
 		    		WHERE R BETWEEN #{startRow} AND #{lastRow}
+		    	</select>
+		    	<select id="getReplyDetail" parameterType="QnaDTO" resultType="QnaDTO">
+		    		SELECT * FROM
+		    	    (SELECT ROWNUM R, N.* FROM
+		    		(SELECT * FROM QNA WHERE STEP > 0 AND REF = #{ref}
+		    						   ORDER BY REF DESC, STEP ASC) N)
 		    	</select>
 		    	<select id="getDetail" parameterType="BoardDTO" resultType="QnaDTO">
 		    		SELECT * FROM QNA WHERE NUM = #{num}

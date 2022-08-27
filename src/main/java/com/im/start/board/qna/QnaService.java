@@ -23,6 +23,10 @@ public class QnaService implements BoardService {
 	@Autowired
 	private ServletContext servletContext;
 	
+	public List<QnaDTO> getReplyDetail(QnaDTO qnaDTO) throws Exception{
+		return qnaDAO.getReplyDetail(qnaDTO);
+	}
+	
 	public int setReply(QnaDTO qnaDTO) throws Exception{
 		BoardDTO boardDTO = qnaDAO.getDetail(qnaDTO);
 		System.out.println(boardDTO.getNum());
