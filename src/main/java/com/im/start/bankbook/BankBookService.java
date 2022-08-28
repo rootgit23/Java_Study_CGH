@@ -1,14 +1,14 @@
 package com.im.start.bankbook;
 
-import java.io.File;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.im.start.file.File;
 
 @Service
 public class BankBookService {
@@ -18,26 +18,12 @@ public class BankBookService {
 	@Autowired
 	private ServletContext servletContext;
 	
-	
 	public int setBankBook(BankBookDTO bankBookDTO,MultipartFile photo) throws Exception{
 		int result = bankBookDAO.setBankBook(bankBookDTO);
 		String realPath = servletContext.getRealPath("resources/upload/bankbook");
-		File file = new File(realPath);
-		if(!photo.isEmpty()) {
-			System.out.println(realPath);
-			if(!file.exists()) {
-				file.mkdirs();
-			}
-			String fileName = UUID.randomUUID().toString();
-			fileName = fileName + "_" + photo.getOriginalFilename();
-			file = new File(file, fileName);
-			photo.transferTo(file);
-			BankBookFileDTO bankBookFileDTO = new BankBookFileDTO();
-			bankBookFileDTO.setBook_Num(bankBookDTO.getBook_Num());
-			bankBookFileDTO.setFileName(fileName);
-			bankBookFileDTO.setOriName(photo.getOriginalFilename());
-			bankBookDAO.setAddFile(bankBookFileDTO);
-		}
+		File file = new File();
+		BankBookFileDTO bankBookFileDTO = file.setFile(bankBookDTO, photo, realPath);
+		bankBookDAO.setAddFile(bankBookFileDTO);
 		return result;
 	}
 	
