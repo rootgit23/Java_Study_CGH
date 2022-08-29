@@ -20,6 +20,7 @@
 				<th>Writer</th>
 				<th>RegDate</th>
 				<th>HIT</th>
+				<th>FILENUM</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -30,7 +31,13 @@
 					<td>${boardDTO.writer}</td>
 					<td>${boardDTO.regDate}</td>
 					<td>${boardDTO.hit }</td>
-					
+					<td>
+					<c:forEach items="${boardDTO.boardFileDTO }" var="fileDTO">
+						<p>
+						<a href="../resources/upload/${board }/${fileDTO.fileName}">${fileDTO.oriName}</a>
+						<p>
+					</c:forEach>
+					</td>
 				</tr>
 		</tbody>
 	

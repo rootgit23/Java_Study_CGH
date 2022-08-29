@@ -1,6 +1,7 @@
 package com.im.start.board.impl;
 
 import java.sql.Date;
+import java.util.List;
 
 public class BoardDTO {
 	
@@ -10,7 +11,14 @@ public class BoardDTO {
 	private String contents;
 	private Date regDate;
 	private Long hit;
+	private List<BoardFileDTO> boardFileDTO;
 	
+	public List<BoardFileDTO> getBoardFileDTO() {
+		return boardFileDTO;
+	}
+	public void setBoardFileDTO(List<BoardFileDTO> boardFileDTO) {
+		this.boardFileDTO = boardFileDTO;
+	}
 	public Long getNum() {
 		return num;
 	}

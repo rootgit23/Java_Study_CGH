@@ -26,7 +26,7 @@ public class NoticeController {
 	
 	@ModelAttribute("board")
 	public String getBoard() {
-		return "Notice";
+		return "notice";
 	}
 	
 	@RequestMapping(value="list", method = RequestMethod.GET)
