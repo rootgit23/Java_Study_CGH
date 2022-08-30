@@ -8,12 +8,12 @@ btn.addEventListener("click",function(){
         frm.submit();
     }
     else if(id.value == "" && pw.value != ""){
-        error.innerHTML += '<label>아이디를 입력하세요</label>';
+       error.innerText = '아이디를 입력하세요';
     }
     else if(id.value != "" && pw.value == ""){
-        error.innerHTML += '<label>비밀번호를 입력하세요</label>';
+       error.innerText = '비밀번호를 입력하세요';
     }
-    else{
-        error.innerHTML += '<label>아이디,비밀번호를 입력하세요</label>';
+    else if(id.value == "" && pw.value == ""){
+       error.innerText = '아이디,비밀번호를 입력하세요';
     }
 });

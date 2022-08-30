@@ -17,9 +17,10 @@
  				 <label for="exampleFormControlInput1" class="form-label">ID</label>
  				 <input type="text" name="user_name" class="form-control" id="id">
 				</div>
-				<div class="mb-3" id="error">
+				<div class="mb-3">
  				 <label for="exampleFormControlTextarea1" class="form-label">Password</label>
  				 <input type="text" name="password" class="form-control" id="pw">
+				 <label id="error"></label>
 				</div>
 				<button type="button" id="btn" class="btn btn-dark">로그인</button>
 			</form>
