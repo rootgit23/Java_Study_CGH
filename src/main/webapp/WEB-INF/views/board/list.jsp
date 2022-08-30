@@ -79,18 +79,29 @@
 		<form action="list" method="get">
 		   <div>	
 			 <select name="kind" class="form-select" id="kind">
-				<option value="contents">contents</option>
-				<option value="title">title</option>
-				<option value="writer">writer</option> 
+				<option class="kinds" value="contents">contents</option>
+				<option class="kinds" value="title">title</option>
+				<option class="kinds" value="writer">writer</option> 
 			 </select>
 			</div>
 			<div class="mb-3">
  				<label for="exampleFormControlInput1" class="form-label">검색어</label>
-    			<input type="text" name="search" class="form-control" id="exampleFormControlInput1">
+    			<input type="text" name="search" value="${param.search}" class="form-control" id="exampleFormControlInput1">
    			</div>
 			<button type="submit" class="btn btn-dark">검색</button>
 		</form>
 		<c:import url="../template/footer.jsp"></c:import>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-</body>
+		<script src="/resources/js/board.js"></script>
+		<script>
+			let k = '${param.kind}';
+			let kinds = document.getElementsByClassName("kinds");
+			for(let i=0; i<kinds.length; i++){
+				if(k == kinds[i].value){
+					kinds[i].selected = true;
+					break;
+				}
+			}
+		</script>
+	</body>
 </html>
