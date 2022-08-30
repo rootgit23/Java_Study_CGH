@@ -12,19 +12,20 @@
   <body>
 	<c:import url="../template/header.jsp"></c:import>
 		<div class="row">
-			<form action="login" method="post">
+			<form action="login" id="frm" method="post">
 				<div class="mb-3">
  				 <label for="exampleFormControlInput1" class="form-label">ID</label>
- 				 <input type="text" name="user_name" class="form-control" id="exampleFormControlInput1">
+ 				 <input type="text" name="user_name" class="form-control" id="id">
 				</div>
-				<div class="mb-3">
+				<div class="mb-3" id="error">
  				 <label for="exampleFormControlTextarea1" class="form-label">Password</label>
- 				 <input type="text" name="password" class="form-control" id="exampleFormControlInput1">
+ 				 <input type="text" name="password" class="form-control" id="pw">
 				</div>
-				<button type="submit" class="btn btn-dark">로그인</button>
+				<button type="button" id="btn" class="btn btn-dark">로그인</button>
 			</form>
 		</div>
 	<c:import url="../template/footer.jsp"></c:import>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+	<script src="/resources/js/member.js"></script>
   </body>
 </html>
