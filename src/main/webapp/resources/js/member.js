@@ -24,8 +24,9 @@ join();
 function join(){
     const all = document.getElementById("all");
     const check = document.getElementsByClassName("check");
-    const btn1 = document.getElementById("btn1");
+    const btn = document.getElementById("btn");
     const joinfrm = document.getElementById("joinfrm");
+    const check2 = document.getElementById("check2");
 
     all.addEventListener("click",function(){
         if(all.checked == true){
@@ -52,7 +53,21 @@ function join(){
         });
     }
 
-    btn1.addEventListener("click",function(){
+    //for(let i=0;i<check2.length;i++){
+        //check2[i].addEventListener("click",function(){
+            //let result2 = true;
+            //for(let j=0; j<check2.length; j++){
+                //if(check2[j].checked == false){
+                    //result2 = false;
+                    //break;
+                //}
+            //}
+            //all.checked = result2;
+        //});
+
+    //}
+
+    btn.addEventListener("click",function(){
         if(all.checked == true){
             joinfrm.submit();
         }
