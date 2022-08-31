@@ -18,5 +18,6 @@
         <button type="button" id="btn">확인</button>
     </form>
     <script src="/resources/js/member.js"></script>
+    <script>join();</script>
 </body>
 </html>

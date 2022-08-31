@@ -10,23 +10,23 @@ function logincheck(){
             frm.submit();
         }
         else if(id.value == "" && pw.value != ""){
-            error.innerHTML += '<label>아이디를 입력하세요</label>';
+            error.innerText = '아이디를 입력하세요';
         }
         else if(id.value != "" && pw.value == ""){
-            error.innerHTML += '<label>비밀번호를 입력하세요</label>';
+            error.innerText = '비밀번호를 입력하세요';
         }
         else{
-            error.innerHTML += '<label>아이디,비밀번호를 입력하세요</label>';
+            error.innerText = '아이디,비밀번호를 입력하세요';
         }
     });
 }
-join();
+
 function join(){
     const all = document.getElementById("all");
     const check = document.getElementsByClassName("check");
     const btn = document.getElementById("btn");
     const joinfrm = document.getElementById("joinfrm");
-    const check2 = document.getElementById("check2");
+    const check2 = document.getElementsByClassName("check2");
 
     all.addEventListener("click",function(){
         if(all.checked == true){
@@ -53,19 +53,6 @@ function join(){
         });
     }
 
-    //for(let i=0;i<check2.length;i++){
-        //check2[i].addEventListener("click",function(){
-            //let result2 = true;
-            //for(let j=0; j<check2.length; j++){
-                //if(check2[j].checked == false){
-                    //result2 = false;
-                    //break;
-                //}
-            //}
-            //all.checked = result2;
-        //});
-
-    //}
 
     btn.addEventListener("click",function(){
         if(all.checked == true){
@@ -74,4 +61,109 @@ function join(){
         else
             alert("약관에 동의하세요");
     });
+}
+
+function join2(){
+    const id = document.getElementById("id");
+    const iderror = document.getElementById("iderror");
+    const pw = document.getElementById("pw");
+    const pwerror = document.getElementById("pwerror");
+    const repw = document.getElementById("repw");
+    const repwerror = document.getElementById("repwerror");
+    const name = document.getElementById("name");
+    const nameerror = document.getElementById("nameerror");
+    const email = document.getElementById("email");
+    const emailerror = document.getElementById("emailerror");
+    const phone = document.getElementById("phone");
+    const phoneerror = document.getElementById("phoneerror");
+    const joinform = document.getElementById("joinform");
+    const joinbutton = document.getElementById("joinbutton");
+
+    let idcheck = false;
+    let pwcheck = false;
+    let pwequalcheck = false;
+    let namecheck = false;
+    let emailcheck = false;
+    let phonecheck = false;
+
+    id.addEventListener("blur",function(){
+        idcheck = false;
+        if(id.value.length < 3){
+            iderror.innerText = 'ID는 2글자 이상이여야 함';
+        }
+        else{
+            iderror.innerText = '';
+            idcheck = true;
+        }
+    });
+
+    pw.addEventListener("keyup",function(){
+        pwcheck = false;
+        if(pw.value.length < 6){
+            pwerror.innerText = '비밀번호는 최소 6글자 이상이여야 함';
+
+        }
+        else{
+            pwerror.innerText = '';
+            pwcheck = true;
+        }
+    });
+
+    repw.addEventListener("blur",function(){
+        pwequalcheck = false;
+        if(pw.value == repw.value){
+            repwerror.innerText = '일치합니다';
+            pwequalcheck = true;
+        }
+        else
+            repwerror.innerText = '일치하지 않습니다';
+    });
+
+    name.addEventListener("blur",function(){
+        namecheck = false;
+        if(name.value.length < 2){
+            nameerror.innerText = '최소 1글자 이상이여야 합니다';
+        }
+        else{
+            nameerror.innerText = '';
+            namecheck = true;
+        }
+    });
+
+    email.addEventListener("blur",function(){
+        emailcheck = false;
+        if(email.value.length < 2){
+            emailerror.innerText = '최소 1글자 이상이여야 합니다';
+        }
+        else{
+            emailerror.innerText = '';
+        if(email.value.match(/[\w\-\.]+\@[\w\-\.]+/g)){
+            emailerror.innerText = '옳은 형식';
+            emailcheck = true;
+        }
+        else
+            emailerror.innerText = '틀린형식';
+    }
+    });
+
+    phone.addEventListener("blur",function(){
+        phonecheck = false;
+        if(phone.value.length < 2){
+            phoneerror.innerText = '최소 1글자 이상이여야 합니다';
+        }
+        else{
+            phoneerror.innerText = '';
+            phonecheck = true;
+        }
+    });
+
+    joinbutton.addEventListener("click",function(){
+        if(idcheck == true && pwcheck == true && pwequalcheck == true && namecheck == true && emailcheck == true && phonecheck == true){
+            joinform.submit();
+        }
+        else
+            alert("가입정보를 재확인하세요");
+    });
+
+
 }
