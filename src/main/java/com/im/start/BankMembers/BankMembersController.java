@@ -59,6 +59,11 @@ public class BankMembersController {
 		
 	}
 	
+	@RequestMapping(value = "agree", method = RequestMethod.GET)
+	public String agree() {
+		return "/member/agree";
+	}
+	
 	//Get
 	@RequestMapping(value = "join", method = RequestMethod.GET)
 	public String join() {

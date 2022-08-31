@@ -36,6 +36,7 @@
  				 <label for="exampleFormControlTextarea1" class="form-label">Photo</label>
  				 <input type="file" name="photo" class="form-control" id="exampleFormControlInput1">
 		</div>
+		
 		<button type="submit" class="btn btn-dark">가입하기</button>
 	
 	</form>
