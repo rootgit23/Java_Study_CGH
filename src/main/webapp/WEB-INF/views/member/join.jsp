@@ -24,7 +24,7 @@
 		</div>
 		<div class="mb-3">
 			<label for="exampleFormControlTextarea1" class="form-label">Password</label>
-			<input type="text" name="password" class="form-control" id="repw">
+			<input type="text" name="passwordcheck" class="form-control" id="repw">
 			<div id="repwerror"></div>
         </div>
 		<div class="mb-3">
@@ -34,7 +34,7 @@
 		</div>
 		<div class="mb-3">
  				 <label for="exampleFormControlTextarea1" class="form-label">Email</label>
- 				 <input required="required" type="email" name="email" class="form-control" id="email">
+ 				 <input type="email" name="email" class="form-control" id="email">
 				 <div id="emailerror"></div>
 		</div>
 		<div class="mb-3">
@@ -48,12 +48,12 @@
 				 <div></div>
 		</div>
 		
-		<button type="submit" class="btn btn-dark" id="joinbutton">가입하기</button>
+		<button type="button" class="btn btn-dark" id="joinbutton">가입하기</button>
 	
 	</form>
 	<c:import url="../template/footer.jsp"></c:import>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-	<!--  <script src="/resources/js/member.js"></script>
-	<script>join2();</script>-->
+	<script src="/resources/js/member.js"></script>
+	<script>join2();</script>
 </body>
 </html>

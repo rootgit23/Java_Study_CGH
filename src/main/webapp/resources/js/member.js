@@ -97,7 +97,7 @@ function join2(){
         }
     });
 
-    pw.addEventListener("keyup",function(){
+    pw.addEventListener("change",function(){
         pwcheck = false;
         if(pw.value.length < 6){
             pwerror.innerText = '비밀번호는 최소 6글자 이상이여야 함';
@@ -105,7 +105,12 @@ function join2(){
         }
         else{
             pwerror.innerText = '';
-            pwcheck = true;
+            if(pw.value.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/)){
+                pwerror.innerText = '옳은 형식';
+                pwcheck = true;
+            }
+            else
+                pwerror.innerText = '틀린 형식';
         }
     });
 
@@ -115,8 +120,10 @@ function join2(){
             repwerror.innerText = '일치합니다';
             pwequalcheck = true;
         }
-        else
+        else{
+            repw.value = '';
             repwerror.innerText = '일치하지 않습니다';
+        }
     });
 
     name.addEventListener("blur",function(){
@@ -153,7 +160,12 @@ function join2(){
         }
         else{
             phoneerror.innerText = '';
-            phonecheck = true;
+            if(phone.value.match(/^\d{3}-\d{4}-\d{4}$/)){
+                phoneerror.innerText = '옳은 형식';
+                phonecheck = true;
+            }
+            else
+            phoneerror.innerText = '틀린형식';
         }
     });
 
