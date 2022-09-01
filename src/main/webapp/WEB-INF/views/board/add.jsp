@@ -29,17 +29,8 @@
  				 <label for="exampleFormControlInput1" class="form-label">Writer</label>
  				 <input type="text" name="writer" class="form-control" id="exampleFormControlInput1">
 		</div>
-		<div class="mb-3">
- 				 <label for="exampleFormControlTextarea1" class="form-label">Files</label>
- 				 <input type="file" name="files" class="form-control" id="exampleFormControlInput1">
-		</div>
-		<div class="mb-3">
- 				 <label for="exampleFormControlTextarea1" class="form-label">Files</label>
- 				 <input type="file" name="files" class="form-control" id="exampleFormControlInput1">
-		</div>
-		<div class="mb-3">
- 				 <label for="exampleFormControlTextarea1" class="form-label">Files</label>
- 				 <input type="file" name="files" class="form-control" id="exampleFormControlInput1">
+		<div id="addfiles">
+			<button type="button" id="fileadd">파일 추가</button>
 		</div>
 		<button type="submit" class="btn btn-dark">추가</button>
 	
@@ -50,5 +41,6 @@
 	<script type="text/javascript">
 		$("#exampleFormControlInput2").summernote();
 	</script>
+	<script src="/resources/js/board_file.js"></script>
 </body>
 </html>
