@@ -16,7 +16,7 @@
 	<c:import url="../template/header.jsp"></c:import>
 	<h1>${board} Add Page</h1>
 	
-	<form action="./add" method="post" enctype="multipart/form-data">
+	<form action="./add" method="post" enctype="multipart/form-data" id="check">
 		<div class="mb-3">
  				 <label for="exampleFormControlInput1" class="form-label">Title</label>
  				 <input type="text" name="title" class="form-control" id="exampleFormControlInput1">
