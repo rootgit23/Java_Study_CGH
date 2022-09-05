@@ -12,22 +12,21 @@ import com.im.start.file.File;
 
 @Service
 public class BankBookService {
-
+	
 	@Autowired
 	private BankBookDAO bankBookDAO;
+	
 	@Autowired
 	private ServletContext servletContext;
 	
-	public int setBankBook(BankBookDTO bankBookDTO,MultipartFile photo) throws Exception{
+	public int setBankBook(BankBookDTO bankBookDTO, MultipartFile photo) throws Exception{
 		int result = bankBookDAO.setBankBook(bankBookDTO);
-		String realPath = servletContext.getRealPath("resources/upload/bankbook");
+		String realPath = servletContext.getRealPath("resources/upload/member");
 		File file = new File();
 		BankBookFileDTO bankBookFileDTO = file.setFile(bankBookDTO, photo, realPath);
-		bankBookDAO.setAddFile(bankBookFileDTO);
-		return result;
+		return bankBookDAO.setAddFile(bankBookFileDTO);
 	}
 	
-	// bank book 조회 최신 순 
 	public List<BankBookDTO> getList() throws Exception{
 		
 		return bankBookDAO.getList();
@@ -49,11 +48,10 @@ public class BankBookService {
 		
 		return bankBookDAO.setUpdate(bankBookDTO);
 	}
-	
+	//
 	public int delete(BankBookDTO bankBookDTO) throws Exception{
 		
 		return bankBookDAO.delete(bankBookDTO);
 	}
-	
 	
 }

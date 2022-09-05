@@ -5,7 +5,8 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 		    <mapper namespace="com.im.start.bankbook.BankBookDAO">
-		    
+		    	
+		    	
 		    	<select id="getList" resultType="BankBookDTO">
 		    	SELECT * FROM BANK_BOOK
 		    	</select>

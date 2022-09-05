@@ -100,7 +100,7 @@ public class BankMembersController {
 		System.out.println("업로드하는 파일 크기 : " + photo.getSize());
 		int result = bankMembersService.setJoin(bankMembersDTO,photo);
 		if(result == 1) {
-			//System.out.println("성공");
+			System.out.println("성공");
 		}
 		else {
 			System.out.println("실패");
