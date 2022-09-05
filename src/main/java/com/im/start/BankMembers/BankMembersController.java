@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.im.start.bankaccount.BankAccountDTO;
 
@@ -28,13 +29,27 @@ public class BankMembersController {
 	}
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(HttpSession session, BankMembersDTO bankMembersDTO, Model model) throws Exception {
+	public ModelAndView login(HttpSession session, BankMembersDTO bankMembersDTO, Model model) throws Exception {
+		String message = "로그인 실패";
+		String url = "./login";
+		ModelAndView mv = new ModelAndView();
 		System.out.println("DB에 로그인 실행");
 		bankMembersDTO = bankMembersService.getLogin(bankMembersDTO);
 		System.out.println(bankMembersDTO);
 		session.setAttribute("member", bankMembersDTO);
+		
+		int result = 0;
+		if(bankMembersDTO!=null) {
+			result = 1;
+			message = "로그인 성공";
+			url = "../";
+		}
+		mv.addObject("result",result);
+		mv.addObject("message",message);
+		mv.addObject("url",url);
+		mv.setViewName("common/result");
 		// "redirect:다시 접속할 URL(절대경로,상대경로)"
-		return "redirect:../";
+		return mv;
 	}
 	
 	@RequestMapping(value = "logOut" , method = RequestMethod.GET)
