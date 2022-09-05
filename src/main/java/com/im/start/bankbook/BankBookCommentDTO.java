@@ -2,10 +2,11 @@ package com.im.start.bankbook;
 
 import org.springframework.stereotype.Component;
 
-import com.im.start.file.FileDTO;
+import com.im.start.board.impl.CommentDTO;
 
 @Component
-public class BankBookFileDTO extends FileDTO {
+public class BankBookCommentDTO extends CommentDTO {
+	
 	private Long Book_Num;
 
 	public Long getBook_Num() {
@@ -15,4 +16,5 @@ public class BankBookFileDTO extends FileDTO {
 	public void setBook_Num(Long book_Num) {
 		Book_Num = book_Num;
 	}
+
 }
