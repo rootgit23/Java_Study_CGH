@@ -16,7 +16,7 @@
 	<c:import url="../template/header.jsp"></c:import>
 	<h1>${board} Add Page</h1>
 	
-	<form action="./add" method="post" enctype="multipart/form-data">
+	<form action="./add" method="post" enctype="multipart/form-data" id="check">
 		<div class="mb-3">
  				 <label for="exampleFormControlInput1" class="form-label">Title</label>
  				 <input type="text" name="title" class="form-control" id="exampleFormControlInput1">
@@ -29,17 +29,8 @@
  				 <label for="exampleFormControlInput1" class="form-label">Writer</label>
  				 <input type="text" name="writer" class="form-control" id="exampleFormControlInput1">
 		</div>
-		<div class="mb-3">
- 				 <label for="exampleFormControlTextarea1" class="form-label">Files</label>
- 				 <input type="file" name="files" class="form-control" id="exampleFormControlInput1">
-		</div>
-		<div class="mb-3">
- 				 <label for="exampleFormControlTextarea1" class="form-label">Files</label>
- 				 <input type="file" name="files" class="form-control" id="exampleFormControlInput1">
-		</div>
-		<div class="mb-3">
- 				 <label for="exampleFormControlTextarea1" class="form-label">Files</label>
- 				 <input type="file" name="files" class="form-control" id="exampleFormControlInput1">
+		<div id="addfiles">
+			<button type="button" id="fileadd">파일 추가</button>
 		</div>
 		<button type="submit" class="btn btn-dark">추가</button>
 	
@@ -50,5 +41,6 @@
 	<script type="text/javascript">
 		$("#exampleFormControlInput2").summernote();
 	</script>
+	<script src="/resources/js/board_file.js"></script>
 </body>
 </html>

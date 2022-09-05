@@ -21,13 +21,13 @@ public class QnaDAOTest extends MyAbstractTest {
 		 //assertEquals(0, ar.size());
 	//}
 	
-	//@Test
-	//public void getDetail() throws Exception{
-		//BoardDTO boardDTO = new BoardDTO();
-		//boardDTO.setNum(1L);
-		//boardDTO = qnaDAO.getDetail(boardDTO);
-		//assertNotEquals(0, boardDTO);
-	//}
+	@Test
+	public void getDetail() throws Exception{
+		BoardDTO boardDTO = new BoardDTO();
+		boardDTO.setNum(1L);
+		boardDTO = qnaDAO.getDetail(boardDTO);
+		assertNotEquals(0, boardDTO);
+	}
 	
 	//@Test
 	//public void setAdd() throws Exception{
@@ -48,13 +48,13 @@ public class QnaDAOTest extends MyAbstractTest {
 		  //int result = qnaDAO.setUpdate(boardDTO);
 		  //assertEquals(1, result);
 	  //}
-	  @Test
-	  public void setDelete() throws Exception{
-		  BoardDTO boardDTO = new BoardDTO();
-		  boardDTO.setNum(2L);
-		  int result = qnaDAO.setDelete(boardDTO);
-		  assertEquals(1, result);
-	  }
+	  //@Test
+	  //public void setDelete() throws Exception{
+		  //BoardDTO boardDTO = new BoardDTO();
+		  //boardDTO.setNum(2L);
+		  //int result = qnaDAO.setDelete(boardDTO);
+		  //assertEquals(1, result);
+	 // }
 	
 
 }

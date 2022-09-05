@@ -59,8 +59,16 @@ public class NoticeController {
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public ModelAndView setAdd(BoardDTO boardDTO,MultipartFile [] files) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		String message = "등록 실패";
+		String url = "./list";
 		int result = noticeService.setAdd(boardDTO,files);
-		mv.setViewName("redirect:./list");
+		if(result == 1) {
+			message = "등록 성공";
+		}
+		mv.addObject("result",result);
+		mv.addObject("message",message);
+		mv.addObject("url",url);
+		mv.setViewName("common/result");
 		return mv;
 	}
 	
