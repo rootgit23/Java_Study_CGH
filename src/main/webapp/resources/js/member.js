@@ -23,10 +23,15 @@ function logincheck(){
 
 function join(){
     const all = document.getElementById("all");
-    const check = document.getElementsByClassName("check");
+    //const check = document.getElementsByClassName("check");
     const btn = document.getElementById("btn");
     const joinfrm = document.getElementById("joinfrm");
     const check2 = document.getElementsByClassName("check2");
+    const check = document.querySelectorAll(".check");
+
+    check.forEach(function(v,i,ar){
+        console.log(v);
+    });
 
     all.addEventListener("click",function(){
         if(all.checked == true){
