@@ -11,15 +11,15 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import com.im.start.MyAbstractTest;
 import com.im.start.bankbook.BankBookCommentDAO;
 
-public class BankBookCommentTest extends MyAbstractTest {
+//public class BankBookCommentTest extends MyAbstractTest {
 
-	@Autowired
-	private BankBookCommentDAO bankBookCommentDAO;
+	//@Autowired
+	//private BankBookCommentDAO bankBookCommentDAO;
 	
-	@Test
-	public void setAddComment() throws Exception {
-		int result = bankBookCommentDAO.setAddComment();
-		assertEquals(1, result);
-	}
+	//@Test
+	//public void setAddComment() throws Exception {
+		//int result = bankBookCommentDAO.setAddComment();
+		//assertEquals(1, result);
+	//}
 
-}
+//}
