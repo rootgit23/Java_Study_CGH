@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.im.start.file.File;
+import com.im.start.util.CommentPager;
 
 @Service
 public class BankBookService {
@@ -22,6 +23,11 @@ public class BankBookService {
 	
 	@Autowired
 	private ServletContext servletContext;
+	
+	public List<BankBookCommentDTO> getCommentList(CommentPager commentPager)throws Exception{
+		commentPager.getRowNum();
+		return bankBookCommentDAO.getCommentList(commentPager);
+	}
 	
 	public int setAddComment(BankBookCommentDTO bankBookCommentDTO) throws Exception{
 		return bankBookCommentDAO.setAddComment(bankBookCommentDTO);

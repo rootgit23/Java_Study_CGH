@@ -10,7 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.im.start.util.CommentPager;
 
 @Controller
 @RequestMapping(value = "/bankbook/*")
@@ -19,11 +23,41 @@ public class BankBookController {
 	@Autowired
 	private BankBookService bankBookService;
 	
-	@RequestMapping(value = "commentAdd", method = RequestMethod.POST)
-	public void setAddComment(BankBookCommentDTO bankBookCommentDTO) throws Exception{
-		
-		int result = bankBookService.setAddComment(bankBookCommentDTO);
+	@RequestMapping(value = "commentList" , method = RequestMethod.GET)
+	@ResponseBody
+	public List<BankBookCommentDTO> getCommentList(CommentPager commentPager) throws Exception{
+		List<BankBookCommentDTO> ar = bankBookService.getCommentList(commentPager);
+		return ar;
 	}
+	
+	//@RequestMapping(value = "commentList" , method = RequestMethod.GET)
+	//public ModelAndView getCommentList(CommentPager commentPager) throws Exception{
+		//ModelAndView mv = new ModelAndView();
+		//List<BankBookCommentDTO> ar = bankBookService.getCommentList(commentPager);
+		//System.out.println("Commentlist");
+		//System.out.println(ar.size());
+		//mv.addObject("commentList",ar);
+		//mv.setViewName("common/commentList");
+		//return mv;
+	//}
+	
+	@RequestMapping(value = "commentAdd", method = RequestMethod.POST)
+	@ResponseBody
+	public String setAddComment(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = bankBookService.setAddComment(bankBookCommentDTO);
+		String jsonResult = "{\"result\":\""+result+"\"}";
+		return jsonResult;
+	}
+	
+	//@RequestMapping(value = "commentAdd", method = RequestMethod.POST)
+	//public ModelAndView setAddComment(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+		//ModelAndView mv = new ModelAndView();
+		//int result = bankBookService.setAddComment(bankBookCommentDTO);
+		//mv.addObject("result",result);
+		//mv.setViewName("common/ajaxResult");
+		//return mv;
+	//}
 	
 	@RequestMapping(value = "list",method = RequestMethod.GET)
 	public void getList(Model model) throws Exception {

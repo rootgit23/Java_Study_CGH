@@ -37,14 +37,34 @@
 	
 	
 	</table>
+
+	<div class="row">
+		<div class="mb-3">
+			<label for="exampleFormControlInput1" class="form-label">UserName</label>
+			<input type="text" class="form-control" id="writer">
+		</div>
+		<div class="mb-3">
+			<label for="exampleFormControlTextarea1" class="form-label">WriteContents</label>
+			<textarea class="form-control" id="contents" rows="3"></textarea>
+		</div>
+		<div class="mb-3">
+			<button type="button" class="form-control" id="button" data-bookNum="${detail.book_Num}">클릭</button>
+		</div>
+
+	</div>
+
+	<div id="commentList">
+
+	</div>
 	
 	
 	<a href="./delete?book_Num=${detail.book_Num}"> Delete </a>
 	<a href="./update?book_Num=${detail.book_Num}"> Update </a>
 	<c:if test="${ not empty member }">
-	<a href="../bankAccount/add?book_Num=${detail.book_Num }">상품가입하기</a>
+		<a href="../bankAccount/add?book_Num=${detail.book_Num }">상품가입하기</a>
 	</c:if>
 	<c:import url="../template/footer.jsp"></c:import>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+	<script src="/resources/js/bankBookComment.js"></script>
 </body>
 </html>
