@@ -19,6 +19,11 @@ public class BankBookController {
 	@Autowired
 	private BankBookService bankBookService;
 	
+	@RequestMapping(value = "commentAdd", method = RequestMethod.POST)
+	public void setAddComment(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+		
+		int result = bankBookService.setAddComment(bankBookCommentDTO);
+	}
 	
 	@RequestMapping(value = "list",method = RequestMethod.GET)
 	public void getList(Model model) throws Exception {

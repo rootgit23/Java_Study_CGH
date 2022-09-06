@@ -6,8 +6,8 @@
 		    
 		    <mapper namespace="com.im.start.bankbook.BankBookCommentDAO">
 		    
-		    	<insert id="setAddComment">
-		    		INSERT INTO BB_COMMENT VALUES(BOARD_SEQ.NEXTVAL,1,'루트','테스트',SYSDATE)
+		    	<insert id="setAddComment", parameterType="BankBookCommentDTO">
+		    		INSERT INTO BB_COMMENT VALUES(BOARD_SEQ.NEXTVAL,#{book_Num],#{writer},#{contents},SYSDATE)
 		    	</insert>
 		    
 		    

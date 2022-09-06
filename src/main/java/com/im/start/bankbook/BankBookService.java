@@ -17,7 +17,16 @@ public class BankBookService {
 	private BankBookDAO bankBookDAO;
 	
 	@Autowired
+	private BankBookCommentDAO bankBookCommentDAO;
+	
+	
+	@Autowired
 	private ServletContext servletContext;
+	
+	public int setAddComment(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+		return bankBookCommentDAO.setAddComment(bankBookCommentDTO);
+		
+	}
 	
 	public int setBankBook(BankBookDTO bankBookDTO, MultipartFile photo) throws Exception{
 		int result = bankBookDAO.setBankBook(bankBookDTO);

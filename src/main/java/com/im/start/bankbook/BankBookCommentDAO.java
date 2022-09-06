@@ -12,7 +12,7 @@ public class BankBookCommentDAO {
 	
 	private String NAMESPACE = "com.im.start.bankbook.BankBookCommentDAO.";
 	
-	public int setAddComment() throws Exception {
+	public int setAddComment(BankBookCommentDTO bankBookCommentDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"setAddComment");
 	}
 
