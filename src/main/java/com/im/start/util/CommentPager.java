@@ -6,10 +6,21 @@ public class CommentPager {
 	private Long startRow;
 	private Long lastRow;
 	private Long book_Num;
+	private Long totalPage;
+	
+
+	public void makePage(Long totalCount) {
+		this.totalPage = totalCount/this.getPerPage();
+		if(totalCount%this.getPage() != 0) {
+			this.totalPage++;
+		}
+	}
+	
 	public void getRowNum() {
 		startRow = (this.getPage()-1)* this.getPerPage() + 1;
 		lastRow = this.getPage() * this.getPerPage();
 	}
+	
 	public Long getStartRow() {
 		return startRow;
 	}
@@ -46,6 +57,13 @@ public class CommentPager {
 	}
 	public void setPerPage(Long perPage) {
 		this.perPage = perPage;
+	}
+	public Long getTotalPage() {
+		return totalPage;
+	}
+	
+	public void setTotalPage(Long totalPage) {
+		this.totalPage = totalPage;
 	}
 
 }

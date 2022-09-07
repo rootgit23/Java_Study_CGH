@@ -21,11 +21,10 @@ public class BankBookService {
 	private BankBookCommentDAO bankBookCommentDAO;
 	
 	
-	@Autowired
-	private ServletContext servletContext;
-	
 	public List<BankBookCommentDTO> getCommentList(CommentPager commentPager)throws Exception{
 		commentPager.getRowNum();
+		Long totalCount = bankBookCommentDAO.getCommentListTotalCount(commentPager);
+		commentPager.makePage(totalCount);
 		return bankBookCommentDAO.getCommentList(commentPager);
 	}
 	
@@ -34,7 +33,15 @@ public class BankBookService {
 		
 	}
 	
-	public int setBankBook(BankBookDTO bankBookDTO, MultipartFile photo) throws Exception{
+	public int setCommentDelete(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+		return bankBookCommentDAO.setCommentDelete(bankBookCommentDTO);
+	}
+	
+	public int setCommentUpdate(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+		return bankBookCommentDAO.setCommentUpdate(bankBookCommentDTO);
+	}
+	
+	public int setBankBook(BankBookDTO bankBookDTO, MultipartFile photo,ServletContext servletContext) throws Exception{
 		int result = bankBookDAO.setBankBook(bankBookDTO);
 		String realPath = servletContext.getRealPath("resources/upload/member");
 		File file = new File();
@@ -68,5 +75,6 @@ public class BankBookService {
 		
 		return bankBookDAO.delete(bankBookDTO);
 	}
+	
 	
 }

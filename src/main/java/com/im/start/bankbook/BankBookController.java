@@ -1,13 +1,16 @@
 package com.im.start.bankbook;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,9 +28,12 @@ public class BankBookController {
 	
 	@RequestMapping(value = "commentList" , method = RequestMethod.GET)
 	@ResponseBody
-	public List<BankBookCommentDTO> getCommentList(CommentPager commentPager) throws Exception{
+	public Map<String, Object> getCommentList(CommentPager commentPager) throws Exception{
 		List<BankBookCommentDTO> ar = bankBookService.getCommentList(commentPager);
-		return ar;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", ar);
+		map.put("pager", commentPager);
+		return map;
 	}
 	
 	//@RequestMapping(value = "commentList" , method = RequestMethod.GET)
@@ -40,6 +46,22 @@ public class BankBookController {
 		//mv.setViewName("common/commentList");
 		//return mv;
 	//}
+	
+	@PostMapping("commentUpdate")
+	@ResponseBody
+	public int setCommentUpdate(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+		int result = bankBookService.setCommentUpdate(bankBookCommentDTO);
+		return result;
+	}
+	
+	
+	@RequestMapping(value = "commentDelete", method = RequestMethod.POST)
+	@ResponseBody
+	public String setCommentDelete(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+		int result = bankBookService.setCommentDelete(bankBookCommentDTO);
+		String jsonResult = "{\"result\":\""+result+"\"}";
+		return jsonResult;
+	}
 	
 	@RequestMapping(value = "commentAdd", method = RequestMethod.POST)
 	@ResponseBody

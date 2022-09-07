@@ -19,8 +19,7 @@ public class NoticeService implements BoardService {
 	
 	@Autowired
 	private NoticeDAO noticeDAO;
-	@Autowired
-	private ServletContext servletContext;
+	
 	
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
@@ -72,7 +71,7 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO,MultipartFile [] files) throws Exception {
+	public int setAdd(BoardDTO boardDTO,MultipartFile [] files,ServletContext servletContext) throws Exception {
 		int result = noticeDAO.setAdd(boardDTO);
 		String realPath = servletContext.getRealPath("resources/upload/notice");
 		File file = new File();

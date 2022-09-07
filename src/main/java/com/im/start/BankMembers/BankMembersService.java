@@ -15,8 +15,6 @@ public class BankMembersService {
 	
 	@Autowired
 	private BankMembersDAO bankMembersDAO;
-	@Autowired
-	private ServletContext servletContext;
 	//@Autowired
 	//private BankAccountDAO bankAccountDAO;
 	
@@ -24,7 +22,7 @@ public class BankMembersService {
 		return bankMembersDAO.getLogin(bankMembersDTO);
 	}
 	
-	public int setJoin(BankMembersDTO bankMembersDTO, MultipartFile photo) throws Exception {
+	public int setJoin(BankMembersDTO bankMembersDTO, MultipartFile photo,ServletContext servletContext) throws Exception {
 		int result = bankMembersDAO.setJoin(bankMembersDTO);
 		String realPath = servletContext.getRealPath("resources/upload/member");
 		File file = new File();
