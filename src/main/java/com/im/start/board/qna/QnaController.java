@@ -2,6 +2,8 @@ package com.im.start.board.qna;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -68,9 +70,9 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value="add",method = RequestMethod.POST)
-	public ModelAndView setAdd(BoardDTO boardDTO,MultipartFile [] files) throws Exception{
+	public ModelAndView setAdd(BoardDTO boardDTO,MultipartFile [] files,ServletContext servletContext) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = qnaService.setAdd(boardDTO,files);
+		int result = qnaService.setAdd(boardDTO,files,servletContext);
 		mv.setViewName("redirect:./list");
 		return mv;
 	}

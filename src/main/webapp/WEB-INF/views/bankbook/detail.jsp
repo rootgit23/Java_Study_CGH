@@ -75,11 +75,12 @@
 		  				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-		  
+						<input type="hidden" id="num" value="">
+						<textarea class="form-control" id="updateContents"></textarea>
 					</div>
 					<div class="modal-footer">
 		 			 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-		  			 <button type="button" class="btn btn-primary">수정</button>
+		  			 <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="btnUpdate">수정</button>
 					</div>
 	  			</div>
 			</div>

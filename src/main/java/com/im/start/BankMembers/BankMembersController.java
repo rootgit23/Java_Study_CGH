@@ -3,6 +3,7 @@ package com.im.start.BankMembers;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,7 +89,7 @@ public class BankMembersController {
 	
 	//Post
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String join(String user_name,String password,String name, String email, String phone, MultipartFile photo) throws Exception {
+	public String join(String user_name,String password,String name, String email, String phone, MultipartFile photo,ServletContext servletContext) throws Exception {
 		BankMembersDTO bankMembersDTO = new BankMembersDTO();
 		bankMembersDTO.setUser_name(user_name);
 		bankMembersDTO.setPassword(password);
@@ -98,7 +99,7 @@ public class BankMembersController {
 		System.out.println("업로드시 파일명 :" + photo.getOriginalFilename());
 		System.out.println("업로드시 파라미터명 :" + photo.getName());
 		System.out.println("업로드하는 파일 크기 : " + photo.getSize());
-		int result = bankMembersService.setJoin(bankMembersDTO,photo);
+		int result = bankMembersService.setJoin(bankMembersDTO,photo,servletContext);
 		if(result == 1) {
 			System.out.println("성공");
 		}

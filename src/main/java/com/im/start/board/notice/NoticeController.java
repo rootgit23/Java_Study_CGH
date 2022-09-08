@@ -2,6 +2,7 @@ package com.im.start.board.notice;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.im.start.BankMembers.BankMembersDTO;
 import com.im.start.board.impl.BoardDTO;
 import com.im.start.util.Pager;
 
@@ -52,16 +54,22 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="add", method = RequestMethod.GET)
-	public String setAdd() throws Exception{
-		return "board/add";
+	public String setAdd(HttpSession session) throws Exception{
+		BankMembersDTO bankMembersDTO = (BankMembersDTO)session.getAttribute("member");
+		if(bankMembersDTO != null) {
+			return "board/add";
+			
+		} else {
+			return "redirect:../member/login";
+		}
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public ModelAndView setAdd(BoardDTO boardDTO,MultipartFile [] files) throws Exception{
+	public ModelAndView setAdd(BoardDTO boardDTO,MultipartFile [] files,ServletContext servletContext) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		String message = "등록 실패";
 		String url = "./list";
-		int result = noticeService.setAdd(boardDTO,files);
+		int result = noticeService.setAdd(boardDTO,files,servletContext);
 		if(result == 1) {
 			message = "등록 성공";
 		}

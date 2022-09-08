@@ -91,6 +91,12 @@ function getCommentList(p,bn){
 
                 td = document.createElement("td");
                 tdText = document.createTextNode(ar[i].regDate)
+                //let d = ar[i].regDate;
+                //let day = new Date(d);
+                //let a = day.getDate();
+                //let b = day.getMonth()+1;
+                //let c = ""+b+"월"+a+"일";
+                //tdText = document.createTextNode(c);
                 td.appendChild(tdText);
                 tr.appendChild(td);
 
@@ -100,6 +106,10 @@ function getCommentList(p,bn){
                 attr.value = "update"
                 td.setAttributeNode(attr); 
                 td.appendChild(tdText);
+
+                attr = document.createAttribute("data-comment-num");
+                attr.value = ar[i].num;
+                td.setAttributeNode(attr);
                 tr.appendChild(td);
 
                 td = document.createElement("td");
@@ -180,12 +190,41 @@ commentList.addEventListener("click",function(event){
         }
     }
     else if(event.target.className == "update"){
+        let contents = event.target.previousSibling.previousSibling.previousSibling.innerHTML;
+        document.getElementById("updateContents").value = contents;
+        let num = event.target.getAttribute("data-comment-num");
+        document.getElementById("num").value = num;
         document.getElementById("up");
         up.click();
-        let contents = event.target.previousSibling.previousSibling.previousSibling;
-        console.log(contents);
-        let v = contents.innerHTML;
-        contents.innerHTML = "<textarea>"+v+"</textarea>";
     }
 });
+
+const btnUpdate = document.getElementById("btnUpdate");
+btnUpdate.addEventListener("click",function(){
+    let contents = document.getElementById("updateContents").value;
+    let num = document.getElementById("num").value;
+    const xHttp = new XMLHttpRequest();
+    xHttp.open("POST","./commentUpdate");
+    xHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xHttp.send("num="+num+"&contents="+contents);
+    xHttp.onreadystatechange = function(){
+        if(xHttp.readyState == 4 && xHttp.status == 200){
+            let result = xHttp.responseText.trim();
+            if(result == 1){
+                alert("수정성공");
+                if(commentList.children.length != 0){
+                    for(let i=0; i<commentList.children.length;){
+                        commentList.children[i].remove();
+                    }
+                }
+                page = 1;
+                getCommentList(page,book_Num);
+            }
+            else{
+                alert("수정실패");
+            }
+        }
+    }
+});
+
 
