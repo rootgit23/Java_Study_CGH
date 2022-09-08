@@ -65,11 +65,11 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public ModelAndView setAdd(BoardDTO boardDTO,MultipartFile [] files,ServletContext servletContext) throws Exception{
+	public ModelAndView setAdd(BoardDTO boardDTO,MultipartFile [] files,HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		String message = "등록 실패";
 		String url = "./list";
-		int result = noticeService.setAdd(boardDTO,files,servletContext);
+		int result = noticeService.setAdd(boardDTO,files,session.getServletContext());
 		if(result == 1) {
 			message = "등록 성공";
 		}

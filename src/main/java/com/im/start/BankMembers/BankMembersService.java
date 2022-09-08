@@ -18,6 +18,10 @@ public class BankMembersService {
 	//@Autowired
 	//private BankAccountDAO bankAccountDAO;
 	
+	public Long getIdCheck(BankMembersDTO bankMembersDTO) throws Exception{
+		return bankMembersDAO.getIdCheck(bankMembersDTO);
+	}
+	
 	public BankMembersDTO getLogin(BankMembersDTO bankMembersDTO) throws Exception{
 		return bankMembersDAO.getLogin(bankMembersDTO);
 	}

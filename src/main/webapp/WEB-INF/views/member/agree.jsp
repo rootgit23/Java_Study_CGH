@@ -9,15 +9,17 @@
 <body>
     모두 동의<input type="checkbox" id="all">
     <div>
-        1번 항목<input type="checkbox" class="check" class="check2">
-        2번 항목<input type="checkbox" class="check" class="check2">
-        3번 항목<input type="checkbox" class="check">
-        4번 항목<input type="checkbox" class="check">
+        1번 항목<input type="checkbox" class="cb req">
+        2번 항목<input type="checkbox" class="cb req">
+        3번 항목<input type="checkbox" class="cb">
+        4번 항목<input type="checkbox" class="cb">
     </div>
-    <form action="join" method="get" id="joinfrm">
-        <button type="button" id="btn">확인</button>
+    <form action="join" method="get" id="frm">
+        <button type="button" id="join">확인</button>
     </form>
     <script src="/resources/js/member.js"></script>
-    <script>join();</script>
+    <script>
+        check();
+    </script>
 </body>
 </html>

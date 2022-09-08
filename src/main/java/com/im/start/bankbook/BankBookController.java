@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,14 +109,14 @@ public class BankBookController {
 	}
 	
 	@RequestMapping(value = "add",method = RequestMethod.POST)
-	public String Add(BankBookDTO bankBookDTO,MultipartFile photo,ServletContext servletContext) throws Exception {
+	public String Add(BankBookDTO bankBookDTO,MultipartFile photo,HttpSession session) throws Exception {
 		System.out.println("add post 실행");
 		bankBookDTO.setBook_Num(System.currentTimeMillis());
 		bankBookDTO.setBook_Sale(false);
 		System.out.println(bankBookDTO.getBook_Num());
 		
 		
-		bankBookService.setBankBook(bankBookDTO,photo,servletContext);
+		bankBookService.setBankBook(bankBookDTO,photo,session.getServletContext());
 		
 		return "redirect:./list";
 	}

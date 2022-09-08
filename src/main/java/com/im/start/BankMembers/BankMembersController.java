@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -59,6 +60,13 @@ public class BankMembersController {
 		return "redirect:../";
 	}
 	
+	@RequestMapping(value = "idCheck" , method = RequestMethod.POST)
+	@ResponseBody
+	public Long getIdCheck(BankMembersDTO bankMembersDTO) throws Exception{
+		Long result = bankMembersService.getIdCheck(bankMembersDTO);
+		return result;
+	}
+	
 	@RequestMapping(value = "myPage", method = RequestMethod.GET)
 	public String getList(HttpSession session,Model model) throws Exception{
 		System.out.println("Member get List 실행");
@@ -89,7 +97,7 @@ public class BankMembersController {
 	
 	//Post
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String join(String user_name,String password,String name, String email, String phone, MultipartFile photo,ServletContext servletContext) throws Exception {
+	public String join(String user_name,String password,String name, String email, String phone, MultipartFile photo,HttpSession session) throws Exception {
 		BankMembersDTO bankMembersDTO = new BankMembersDTO();
 		bankMembersDTO.setUser_name(user_name);
 		bankMembersDTO.setPassword(password);
@@ -99,7 +107,7 @@ public class BankMembersController {
 		System.out.println("업로드시 파일명 :" + photo.getOriginalFilename());
 		System.out.println("업로드시 파라미터명 :" + photo.getName());
 		System.out.println("업로드하는 파일 크기 : " + photo.getSize());
-		int result = bankMembersService.setJoin(bankMembersDTO,photo,servletContext);
+		int result = bankMembersService.setJoin(bankMembersDTO,photo,session.getServletContext());
 		if(result == 1) {
 			System.out.println("성공");
 		}

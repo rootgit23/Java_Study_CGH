@@ -41,12 +41,14 @@ public class HomeController {
 		System.out.println(sqlSession);
 		System.out.println("시작");
 		
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
+		//try {
+			//Thread.sleep(10000);
+		//} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			//e.printStackTrace();
+		//}
+		
+		System.out.println("Controller");
 		
 		return "index";
 	}
