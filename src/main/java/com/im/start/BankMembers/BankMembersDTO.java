@@ -13,6 +13,13 @@ public class BankMembersDTO {
 	private String email;
 	private String phone;
 	private MemberFileDTO memberFileDTO;
+	private List<RollDTO> rollDTO;
+	public List<RollDTO> getRollDTO() {
+		return rollDTO;
+	}
+	public void setRollDTO(List<RollDTO> rollDTO) {
+		this.rollDTO = rollDTO;
+	}
 	public MemberFileDTO getMemberFileDTO() {
 		return memberFileDTO;
 	}

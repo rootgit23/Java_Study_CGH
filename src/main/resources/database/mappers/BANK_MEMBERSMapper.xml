@@ -7,9 +7,26 @@
 	<select id="getIdCheck" parameterType="BankMembersDTO" resultType="Long">
 		SELECT COUNT(USER_NAME) FROM BANK_MEMBERS WHERE USER_NAME = #{user_name}
 	</select>
-	<select id="getLogin" parameterType="BankMembersDTO" resultType="BankMembersDTO">
-		SELECT USER_NAME,NAME FROM BANK_MEMBERS WHERE USER_NAME = #{user_name} AND PASSWORD = #{password}
+	<select id="getLogin" parameterType="BankMembersDTO" resultMap="getLoginResult">
+		SELECT BM.USER_NAME,BM.NAME,MR.ROLLNUM,R.ROLLNAME
+		FROM BANK_MEMBERS BM
+    	 INNER JOIN
+    	 MEMBER_ROLE MR
+    	 ON BM.USER_NAME = MR.USER_NAME
+    	 INNER JOIN
+     	 ROLL R
+    	 ON MR.ROLLNUM = R.ROLLNUM
+		WHERE BM.USER_NAME = #{user_name} AND BM.PASSWORD = #{password}
+		ORDER BY R.ROLLNUM ASC
 	</select>
+	<resultMap type="BankMembersDTO" id="getLoginResult">
+		<id column="USER_NAME" property="user_name" />
+		<result column="NAME" property="name" />
+		<collection property="rollDTO" javaType="List" ofType="RollDTO">
+			<id column="ROLLNUM" property="rollNum" />
+			<result column="ROLLNAME" property="rollName" />
+		</collection>
+	</resultMap>
 	<select id="getSearchByID" parameterType="String" resultType = "BankMembersDTO">
 		SELECT * FROM BANK_MEMBERS WHERE USER_NAME LIKE '%'||#{search}||'%' ORDER BY USER_NAME ASC
 	</select>

@@ -69,6 +69,13 @@
 					</c:forEach>
 		</tbody>
 	</table>
+	<div>
+		<c:forEach items="${member.rollDTO }" var="rollDTO">
+			<div>${rollDTO.rollNum }, ${rollDTO.rollName }</div>
+		</c:forEach>
+		<h1>당신은 ${member.rollDTO.get(0).rollName }</h1>
+		<h1>당신은 ${member.rollDTO["0"].rollName }</h1>
+	</div>
 	<div class="row">
 		<img alt="" src="../resources/upload/member/${dto.memberFileDTO.fileName }">
 	</div>
