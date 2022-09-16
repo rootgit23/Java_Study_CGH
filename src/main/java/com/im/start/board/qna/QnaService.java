@@ -58,7 +58,7 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception {
+	public int setUpdate(BoardDTO boardDTO,MultipartFile [] files,ServletContext servletContext) throws Exception {
 		return qnaDAO.setUpdate(boardDTO);
 	}
 

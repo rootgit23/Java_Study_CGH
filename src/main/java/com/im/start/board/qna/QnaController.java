@@ -87,9 +87,9 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value="update",method = RequestMethod.POST)
-	public ModelAndView setUpdate(BoardDTO boardDTO) throws Exception{
+	public ModelAndView setUpdate(BoardDTO boardDTO,MultipartFile [] files,HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = qnaService.setUpdate(boardDTO);
+		int result = qnaService.setUpdate(boardDTO,files,session.getServletContext());
 		mv.setViewName("redirect:./detail?num="+boardDTO.getNum());
 		return mv;
 	}
