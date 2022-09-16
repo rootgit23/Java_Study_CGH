@@ -26,6 +26,15 @@
  				 <label for="exampleFormControlInput1" class="form-label">Contents</label>
  				 <textarea class="form-control" name="contents" value="${boardDTO.contents }" class="form-control" id="exampleFormControlInput1"></textarea>
 		</div>
+		<c:forEach items="${boardDTO.boardFileDTO }" var="fileDTO">
+			<div class="mb-3">
+				<span class="form-control">${fileDTO.oriName}</span>
+				<button class="fileDelete" type="button" data-file-num="${fileDTO.fileNum}">삭제</button>
+			</div>
+		</c:forEach>
+		<div id="addfiles">
+			<button type="button" id="fileadd">파일 추가</button>
+		</div>
 	
 		
 		<button type="submit" class="btn btn-dark">수정</button>
@@ -33,5 +42,9 @@
 	</form>
 	<c:import url="../template/footer.jsp"></c:import>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+	<script src="/resources/js/board_file.js"></script>
+	<script>
+		setCount(${boardDTO.boardFileDTO.size()});
+	</script>
 </body>
 </html>

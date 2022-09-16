@@ -3,6 +3,9 @@ package com.im.start.board.notice;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -51,6 +54,16 @@ public class NoticeDAO implements BoardDAO {
 	@Override
 	public Long getCount(Pager pager) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getCount",pager);
+	}
+	
+	@Override
+	public int setFileDelete(BoardFileDTO boardFileDTO,ServletContext servletContext) throws Exception {
+		return sqlSession.delete(NAMESPACE+"setFileDelete",boardFileDTO);
+	}
+	
+	@Override
+	public BoardFileDTO getFileDetail(BoardFileDTO boardFileDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getFileDetail",boardFileDTO);
 	}
 	
 }

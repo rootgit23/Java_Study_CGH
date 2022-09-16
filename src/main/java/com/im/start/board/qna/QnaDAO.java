@@ -2,6 +2,8 @@ package com.im.start.board.qna;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -58,6 +60,18 @@ public class QnaDAO implements BoardDAO {
 	@Override
 	public Long getCount(Pager pager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getCount", pager);
+	}
+	
+	@Override
+	public BoardFileDTO getFileDetail(BoardFileDTO boardFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public int setFileDelete(BoardFileDTO boardFileDTO, ServletContext servletContext) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	

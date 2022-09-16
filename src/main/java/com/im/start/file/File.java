@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.im.start.BankMembers.BankMembersDTO;
@@ -14,6 +16,13 @@ import com.im.start.board.impl.BoardDTO;
 import com.im.start.board.impl.BoardFileDTO;
 
 public class File {
+	
+	public boolean deleteFile(ServletContext servletContext, String path, FileDTO fileDTO) throws Exception{
+		String realPath = servletContext.getRealPath(path);
+		System.out.println(realPath);
+		java.io.File file = new java.io.File(realPath,fileDTO.getFileName());
+		return file.delete();
+	}
 	
 	public List<BoardFileDTO> setFile(BoardDTO boardDTO, MultipartFile [] files,String realPath) throws Exception{
 		List<BoardFileDTO> ar = new ArrayList<BoardFileDTO>();
@@ -77,6 +86,28 @@ public class File {
 			bankBookFileDTO.setBook_Num(bankBookDTO.getBook_Num());
 		}
 		return bankBookFileDTO;
+	}
+	
+	public String saveFile(ServletContext servletContext, String path, MultipartFile multipartFile)throws Exception{
+		//1. 실제 경로
+		String realPath = servletContext.getRealPath(path);
+		System.out.println(realPath);
+		
+		//2. 폴더(directory) 체크
+		java.io.File file = new java.io.File(realPath);
+		if(!file.exists()) {
+			file.mkdirs();
+		}
+		
+		//3. 저장할 파일명 생성
+		String fileName = UUID.randomUUID().toString();
+		fileName = fileName+"_"+multipartFile.getOriginalFilename();
+		
+		//4. HDD에 저장
+		file = new java.io.File(file, fileName);
+		multipartFile.transferTo(file);
+		
+		return fileName;
 	}
 
 }

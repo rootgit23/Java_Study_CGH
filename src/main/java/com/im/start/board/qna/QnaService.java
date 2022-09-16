@@ -67,4 +67,10 @@ public class QnaService implements BoardService {
 		return qnaDAO.setDelete(boardDTO);
 	}
 	
+	@Override
+	public int setFileDelete(BoardFileDTO boardFileDTO, ServletContext servletContext) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 }

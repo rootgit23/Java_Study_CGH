@@ -10,14 +10,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.im.start.BankMembers.BankMembersDTO;
 import com.im.start.board.impl.BoardDTO;
+import com.im.start.board.impl.BoardFileDTO;
 import com.im.start.util.Pager;
 
 @Controller
@@ -93,8 +96,8 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String setUpdate(BoardDTO boardDTO) throws Exception{
-		int result = noticeService.setUpdate(boardDTO);
+	public String setUpdate(BoardDTO boardDTO,MultipartFile [] files, HttpSession session) throws Exception{
+		int result = noticeService.setUpdate(boardDTO,files,session.getServletContext());
 		return "redirect:./detail?num="+boardDTO.getNum();
 	}
 	
@@ -109,6 +112,13 @@ public class NoticeController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/errors/error_404");
 		return mv;
+	}
+	
+	@PostMapping("fileDelete")
+	@ResponseBody
+	public int setFileDelete(BoardFileDTO boardFileDTO,HttpSession session) throws Exception{
+		int result = noticeService.setFileDelete(boardFileDTO,session.getServletContext());
+		return result;
 	}
 	
 }

@@ -1,8 +1,10 @@
 package com.im.start.board.notice;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,8 +83,32 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception {
-		return noticeDAO.setUpdate(boardDTO);
+	public int setUpdate(BoardDTO boardDTO,MultipartFile [] files, ServletContext servletContext) throws Exception {
+	    	// TODO Auto-generated method stub
+			String path="resources/upload/notice";
+			int result = noticeDAO.setUpdate(boardDTO);
+			List<BoardFileDTO> ar = new ArrayList<BoardFileDTO>();
+			
+				
+			if(result<1) {
+				return result;
+			}
+				
+			for(MultipartFile multipartFile: files) {
+				if(multipartFile.isEmpty()) {
+					continue;
+				}
+				File file = new File();
+				String fileName = file.saveFile(servletContext,path, multipartFile);
+				BoardFileDTO boardFileDTO = new BoardFileDTO();
+					boardFileDTO.setFileName(fileName);
+					boardFileDTO.setOriName(multipartFile.getOriginalFilename());
+					boardFileDTO.setNum(boardDTO.getNum());
+					ar.add(boardFileDTO);
+			}
+			noticeDAO.setAddFile(ar);
+				
+			return result;
 	}
 
 	@Override
@@ -90,6 +116,17 @@ public class NoticeService implements BoardService {
 		return noticeDAO.setDelete(boardDTO);
 	}
 	
+	@Override
+	public int setFileDelete(BoardFileDTO boardFileDTO,ServletContext servletContext) throws Exception {
+		boardFileDTO = noticeDAO.getFileDetail(boardFileDTO);
+		int result = noticeDAO.setFileDelete(boardFileDTO,servletContext);
+		String path = "resources/upload/notice";
+		if(result > 0) {
+			File file = new File();
+			file.deleteFile(servletContext, path, boardFileDTO);
+		}
+		return result;
+	}
 	
 
 }

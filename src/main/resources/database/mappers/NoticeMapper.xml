@@ -72,5 +72,13 @@
 		  	  SELECT COUNT(*) FROM NOTICE
 			  							<include refid="search"></include>
 		  	  </select>
+		  	  
+		  	  <delete id="setFileDelete" parameterType="BoardFileDTO">
+		  	  	DELETE NOTICEFILE WHERE FILENUM=#{fileNum}
+		  	  </delete>
+		  	  
+		  	  <select id="getFileDetail" parameterType="BoardFileDTO" resultType="BoardFileDTO">
+		  	  	SELECT * FROM NOTICEFILE WHERE FILENUM=#{fileNum}
+		  	  </select>
 		    	
 		    </mapper>
